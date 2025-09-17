@@ -1,7 +1,7 @@
-﻿using FluentAssertions; // for Should() extension method
-
-namespace Module01.Lesson05.ClassLibrary.Tests
+﻿namespace Module01.Lesson05.ClassLibrary.Tests
 {
+    using FluentAssertions; // for Should() extension method
+
     public class CalculatorTest
     {
         [Fact]
