@@ -28,12 +28,20 @@ namespace Module01.HiringHelper
             {
                 // Required pattern: two uppercase letters + four digits (e.g., AB1234).
                 // Invalid values throw ArgumentException with a helpful message.
-                var regex = new Regex(@"[A-Z][A-Z]\d\d\d\d");
-                if (!regex.IsMatch(value))
-                {
-                    throw new ArgumentException("EmployeeId pattern must contain two uppercase letters + four digits");
-                }
-                _employeeId = value.Trim();
+
+                //var regex = new Regex(@"[A-Z][A-Z]\d\d\d\d");
+                //if (!regex.IsMatch(value))
+                //{
+                //    throw new ArgumentException("EmployeeId pattern must contain two uppercase letters + four digits");
+                //}
+                //_employeeId = value.Trim();
+
+                // Modifed code to use helper methods from Utitilies class
+                _employeeId = Utiliites.RequirePattern(
+                    value, 
+                    @"[A-Z][A-Z]\d\d\d\d", 
+                    "EmployeeId pattern must contain two uppercase letters + four digits"
+                    );
             }
         }
         public string FullName
@@ -43,11 +51,14 @@ namespace Module01.HiringHelper
             {
                 // Must not be blank; trim whitespace
                 // Invalid values throw ArgumentException.
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("FullName must not be blank.");
-                }
-                _fullName = value.Trim();
+                //if (string.IsNullOrWhiteSpace(value))
+                //{
+                //    throw new ArgumentException("FullName must not be blank.");
+                //}
+                //_fullName = value.Trim();
+
+                // Modifed code to use helper methods from Utitilies class
+                _fullName = Utiliites.RequireNotBlank(value, "FullName must not be blank.");
             }
         }
         public decimal HourlyRate
@@ -57,11 +68,19 @@ namespace Module01.HiringHelper
             {
                 // Range: 15.00 to 250.00 inclusive.
                 // Out-of-range throws ArgumentOutOfRangeException.
-                if (value < Minimal_HourlyRate || value > Maximum_HourlyRate)
-                {
-                    throw new ArgumentOutOfRangeException($"HourRate must be between {Minimal_HourlyRate} and {Maximum_HourlyRate}");
-                }
-                _hourlyRate = value;
+                //if (value < Minimal_HourlyRate || value > Maximum_HourlyRate)
+                //{
+                //    throw new ArgumentOutOfRangeException($"HourRate must be between {Minimal_HourlyRate} and {Maximum_HourlyRate}");
+                //}
+                //_hourlyRate = value;
+
+                // Modifed code to use helper methods from Utitilies class
+                _hourlyRate = Utiliites.RequireRange(
+                    value, 
+                    Minimal_HourlyRate, 
+                    Maximum_HourlyRate, 
+                    $"HourRate must be between {Minimal_HourlyRate} and {Maximum_HourlyRate}"
+                    );
             }
         }
         public double HoursPerWeek
@@ -71,11 +90,19 @@ namespace Module01.HiringHelper
             {
                 // Range: 0 to 60 inclusive.
                 // Out-of-range throws ArgumentOutOfRangeException.
-                if (value < Minimal_HoursPerWeek || value > Maximum_HoursPerWeek)
-                {
-                    throw new ArgumentOutOfRangeException($"HoursPerWeek must be between {Minimal_HoursPerWeek} and {Maximum_HoursPerWeek}");
-                }
-                _hoursPerWeek = value;
+                //if (value < Minimal_HoursPerWeek || value > Maximum_HoursPerWeek)
+                //{
+                //    throw new ArgumentOutOfRangeException($"HoursPerWeek must be between {Minimal_HoursPerWeek} and {Maximum_HoursPerWeek}");
+                //}
+                //_hoursPerWeek = value;
+
+                // Modifed code to use helper methods from Utitilies class
+                _hoursPerWeek = Utiliites.RequireRange(
+                    value, 
+                    Minimal_HoursPerWeek, 
+                    Maximum_HoursPerWeek,
+                    $"HoursPerWeek must be between {Minimal_HoursPerWeek} and {Maximum_HoursPerWeek}"
+                    );
             }
         }
         // Define auto-implemented properties without backing field
