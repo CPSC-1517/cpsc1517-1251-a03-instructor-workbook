@@ -33,5 +33,14 @@
             Action action = () => new Person(firstname, "Welch", null, null);
             action.Should().Throw<ArgumentNullException>();
         }
+
+        [Fact]
+        public void FullName_ValidValues_ReturnCorrectFormat()
+        {
+            // Arrange and Act
+            var sut = new Person("Don", "Welch", null, null);
+            // Assert
+            sut.FullName.Should().Be("Welch, Don");
+        }
     }
 }

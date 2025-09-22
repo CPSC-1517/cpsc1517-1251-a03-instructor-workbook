@@ -3,6 +3,8 @@ namespace Module01.Lesson06.ClassLibrary
 {
     public class Person
     {
+        public string FullName => $"{LastName}, {FirstName}";
+
         //public string FirstName { get; set; }
         private string _firstName;
         public string FirstName
