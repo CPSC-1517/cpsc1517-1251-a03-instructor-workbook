@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Module01.Sep22.ClassLibrary
+﻿namespace Module01.Sep22.ClassLibrary
 {
     /// <summary>
     /// A Library is a composite of Book items.
@@ -29,7 +27,6 @@ namespace Module01.Sep22.ClassLibrary
                     throw new ArgumentException("LibraryId cannot be null", nameof(value));
                 }
                 _libraryId = value.Trim();
-                //throw new NotImplementedException("TODO: implement LibraryId validation & assignment.");
             }
         }
 
@@ -42,7 +39,6 @@ namespace Module01.Sep22.ClassLibrary
             private set
             {
                 // TODO: validate required string (non-null, non-empty, non-blank) then trim
-                //throw new NotImplementedException("TODO: implement Name validation & assignment.");
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Name cannot be null", nameof(value));
@@ -61,7 +57,7 @@ namespace Module01.Sep22.ClassLibrary
             {
                 // TODO: allow null; if not null, require non-empty/non-blank then trim
                 // Hint: if (value is null) { _address = null; return; }
-                //throw new NotImplementedException("TODO: implement Address validation & assignment.");
+                
                 if (value is null)
                 {
                     _address = null;
@@ -97,14 +93,12 @@ namespace Module01.Sep22.ClassLibrary
             Name = name;
             Address = address;
 
-
             // Initialize Books
             // TODO: if 'books' is supplied:
             //  - ensure there are no duplicate ISBNs (case-insensitive recommended)
             //  - if duplicates exist, throw ArgumentException mentioning the offending ISBN
             //  - otherwise copy into Books (e.g., Books = new List<Book>(books))
             // If 'books' is null, keep the default empty list.
-            //throw new NotImplementedException("TODO: implement constructor body.");
             // Initialize Books
             if (books != null)
             {
