@@ -134,9 +134,32 @@ namespace Module01.Sep22.ClassLibrary
         {
             // TODO:
             // 1) null-check 'book'
+            if (book is null)
+            {
+                throw new ArgumentNullException(nameof(book),"AddBook: book parameter cannot be null");
+            }
             // 2) check for duplicate ISBN in Books (suggest: case-insensitive comparison)
+            //bool isDuplicateISBN = false;
+            //for (int index = 0; index < Books.Count && !isDuplicateISBN; index++)
+            //{
+            //    var currentBook = Books[index];
+            //    if (currentBook.ISBN.ToUpper() == book.ISBN.ToUpper())
+            //    //if (string.Equals(currentBook.ISBN, book.ISBN, StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        isDuplicateISBN = true;
+            //    }
+            //}
+
+            //bool isDuplicateISBN = FindByIsbn(book.ISBN) is null ? true : false;
+            bool isDuplicateISBN = FindByIsbn(book.ISBN) is null;
+
+            if (isDuplicateISBN)
+            {
+                throw new ArgumentException($"Error! Book ISBN {book.ISBN} is already in the library  ");
+            }
+
             // 3) add to Books
-            throw new NotImplementedException("TODO: implement AddBook.");
+            Books.Add(book);
         }
 
         /// <summary>
@@ -149,9 +172,32 @@ namespace Module01.Sep22.ClassLibrary
         {
             // TODO:
             // 1) validate 'isbn' input (non-null/non-blank, then trim)
+            if (string.IsNullOrWhiteSpace(isbn))
+            {
+                throw new ArgumentNullException(nameof(isbn),"ISBN cannot be empty");
+            }
             // 2) locate matching book (same ISBN, case-insensitive)
+            var foundBook = FindByIsbn(isbn);
+            if (foundBook == null) 
+            {
+                throw new ArgumentException($"Error! ISBN ${isbn} does not exists.");
+            }
+
             // 3) if not found -> throw; else remove
-            throw new NotImplementedException("TODO: implement RemoveBook.");
+            Books.Remove(foundBook);
+        }
+
+        public Book? FindByIsbn(string isbn)
+        {
+            Book? querySingleResult = null;
+            for (int index = 0; index < Books.Count && querySingleResult is null; index++)
+            {
+                if (IsSameIsbn(Books[index].ISBN, isbn)) {
+                    querySingleResult = Books[index];
+                }
+                
+            }
+            return querySingleResult;
         }
 
         // OPTIONAL: helper to compare ISBNs consistently in one place
