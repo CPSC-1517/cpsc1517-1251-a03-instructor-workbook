@@ -41,7 +41,7 @@
                 // TODO: validate required string (non-null, non-empty, non-blank) then trim
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Name cannot be null", nameof(value));
+                    throw new ArgumentNullException(nameof(Name),"Name cannot be null");
                 }
                 _name = value.Trim();
             }
@@ -149,7 +149,7 @@
 
             if (isDuplicateISBN)
             {
-                throw new ArgumentException($"Error! Book ISBN {book.ISBN} is already in the library  ");
+                throw new ArgumentException($"Error! Book ISBN {book.ISBN} is a duplicate.");
             }
 
             // 3) add to Books
