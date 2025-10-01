@@ -7,7 +7,7 @@
         <tr><th>Title</th></tr>
     </thead>
     <tbody>
-        @foreach (var book in BookList)
+        @foreach (var book in Books)
         {
             <tr><td>@book.Title</td></tr>
         }
@@ -15,7 +15,7 @@
 </table>
 
 @code {
-     private List<Book> BookList = new()
+     private List<Book> Books = new()
       {
         new Book { Title = "Clean Code" },
         new Book { Title = "Domain-Driven Design" }
