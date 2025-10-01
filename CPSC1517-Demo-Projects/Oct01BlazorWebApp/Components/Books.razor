@@ -1,0 +1,28 @@
+﻿@page "/books"
+
+<h3>Library Books</h3>
+
+<table class="table">
+    <thead>
+        <tr><th>Title</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var book in BookList)
+        {
+            <tr><td>@book.Title</td></tr>
+        }
+    </tbody>
+</table>
+
+@code {
+     private List<Book> BookList = new()
+      {
+        new Book { Title = "Clean Code" },
+        new Book { Title = "Domain-Driven Design" }
+      };
+
+    public class Book
+    {
+        public string Title { get; set; } = "";
+    }
+}
