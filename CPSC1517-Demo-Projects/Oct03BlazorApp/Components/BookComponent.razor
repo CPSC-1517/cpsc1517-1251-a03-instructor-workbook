@@ -1,0 +1,19 @@
+﻿<h3>@Title</h3>
+<p>Author: @Author</p>
+<p>Price: @Price:C</p>
+
+<button @onclick="LikeBook">Like</button>
+<p>Likes: @likes</p>
+
+<label>Edit title: <input @bind="Title" /></label>
+<p>Current: @Title</p>
+
+@code {
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string Author { get; set; } = string.Empty;
+    [Parameter] public decimal Price { get; set; }
+
+    private int likes = 0;
+    private void LikeBook() => likes++;
+}
+

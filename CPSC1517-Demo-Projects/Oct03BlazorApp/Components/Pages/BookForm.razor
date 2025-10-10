@@ -1,0 +1,80 @@
+﻿@page "/books/form"
+@using Models
+
+<h3>BookForm</h3>
+<EditForm Model="@book" OnValidSubmit="@AddBook">
+    <div>
+        <label for="title" class="form-label">Title:</label>
+        <InputText id="title" @bind-Value="book.Title" class="form-control"/>
+    </div>
+   
+    <div>
+        <label for="pages" class="form-label">Pages:</label>
+        <InputNumber id="pages" @bind-Value="book.Pages" class="form-control" />
+    </div>
+
+    <div>
+        <label for="publishdate" class="form-label">Publish Date</label>
+        <InputDate id="publishdate" @bind-Value="book.PublishDate" class="form-control" />
+    </div>
+
+    <div>
+        <label for="genre" class="form-label">Genre:</label>
+        <InputSelect id="genre" @bind-Value="book.Genre" class="form-control">
+            <option>Anime</option>
+            <option>Fiction</option>
+            <option>Non-Fiction</option>
+            <option>Sports</option>
+        </InputSelect>
+    </div>
+
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="@book.InStock" class="form-control" /> In Stock
+        </label>
+    </div>
+
+    <button type="submit">Add Button</button>
+</EditForm>
+
+@if (books.Count == 0)
+{
+    <p>No books yet.</p>
+} 
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Pages</th>
+                <th>PublishDate</th>
+                <th>Genre</th>
+                <th>InStock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currentBook in books)
+            {
+                <tr>
+                    <td>@currentBook.Title</td>
+                    <td>@currentBook.PublishDate</td>
+                    <td>@currentBook.Genre</td>
+                    <td>@(currentBook.InStock ? "yes" : "no")</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table>
+}
+
+@code {
+    private Book book = new();
+    private List<Book> books = new List<Book>();
+
+    private void AddBook()
+    {
+        books.Add(book);
+        book = new(); // clear form
+    }
+}

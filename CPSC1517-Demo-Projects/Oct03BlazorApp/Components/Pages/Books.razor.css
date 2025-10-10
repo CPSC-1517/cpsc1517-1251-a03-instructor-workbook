@@ -1,0 +1,13 @@
+﻿h3 {
+    margin-top: 0.5rem;
+    background-color:cornflowerblue;
+}
+
+p {
+    background-color:purple;
+}
+
+.book-header {
+    padding: .5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}

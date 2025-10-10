@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Module01.Lesson06.ClassLibrary
 {
-    public class Person
+    public class Person 
     {
         public string FullName => $"{LastName}, {FirstName}";
 
