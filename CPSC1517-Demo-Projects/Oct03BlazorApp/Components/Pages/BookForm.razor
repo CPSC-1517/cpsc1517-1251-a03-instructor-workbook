@@ -30,11 +30,11 @@
 
     <div>
         <label>
-            <InputCheckbox @bind-Value="@book.InStock" class="form-control" /> In Stock
+            <InputCheckbox @bind-Value="@book.InStock"  /> In Stock
         </label>
     </div>
 
-    <button type="submit">Add Button</button>
+    <button type="submit" class="btn btn-primary">Add Button</button>
 </EditForm>
 
 @if (books.Count == 0)
