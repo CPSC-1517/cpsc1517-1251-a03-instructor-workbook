@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oct01BlazorWebApp", "Oct01B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oct03BlazorApp", "Oct03BlazorApp\Oct03BlazorApp.csproj", "{3F548364-7823-4E5A-8D3D-B7C16632F4A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookBlazorApp", "BookBlazorApp\BookBlazorApp.csproj", "{D57E25E3-DEE7-4CCF-849A-01D8D52E7D1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{3F548364-7823-4E5A-8D3D-B7C16632F4A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F548364-7823-4E5A-8D3D-B7C16632F4A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F548364-7823-4E5A-8D3D-B7C16632F4A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57E25E3-DEE7-4CCF-849A-01D8D52E7D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57E25E3-DEE7-4CCF-849A-01D8D52E7D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57E25E3-DEE7-4CCF-849A-01D8D52E7D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57E25E3-DEE7-4CCF-849A-01D8D52E7D1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

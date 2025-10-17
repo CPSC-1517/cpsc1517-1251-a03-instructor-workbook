@@ -1,0 +1,120 @@
+﻿@page "/book/entry1"
+@using Models
+
+<h3>BookEntryWithoutDataAnnotations</h3>
+
+@if (feedbackMessage is not null)
+{
+    <div class="alert alert-info">
+        @feedbackMessage
+    </div>
+}
+
+<EditForm EditContext="@editContext" OnValidSubmit="@AddBook">
+    <!-- Show a summary of all errors we've added -->
+    <ValidationSummary />
+
+    <div>
+        <label for="title" class="form-label">Title:</label>
+        <InputText id="title" @bind-Value="book.Title" class="form-control" />
+        <!-- Field-level messages for Title -->
+        <ValidationMessage For="() => book.Title" />
+    </div>
+
+    <div>
+        <label for="pages" class="form-label">Pages:</label>
+        <InputNumber id="pages" @bind-Value="book.Pages" class="form-control" />
+        <!-- Field-level messages for Pages -->
+        <ValidationMessage For="() => book.Pages" />
+    </div>
+
+    <div>
+        <label for="publishdate" class="form-label">Publish Date</label>
+        <InputDate id="publishdate" @bind-Value="book.PublishDate" class="form-control" />
+        <!-- Field-level messages for PublishDate -->
+        <ValidationMessage For="() => book.PublishDate" />
+    </div>
+
+    <div>
+        <label for="genre" class="form-label">Genre:</label>
+        <InputSelect id="genre" @bind-Value="book.Genre" class="form-control">
+            <option></option>
+            <option>Anime</option>
+            <option>Fiction</option>
+            <option>Non-Fiction</option>
+            <option>Sports</option>
+        </InputSelect>
+        <!-- Field-level messages for Genre -->
+        <ValidationMessage For="() => book.Genre" />
+    </div>
+
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="@book.InStock" /> In Stock
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Button</button>
+</EditForm>
+
+@code {
+    BookNoDataAnnotations book = new();
+
+    private EditContext editContext = default!;
+    private ValidationMessageStore? messageStore;
+
+    private string? feedbackMessage;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(book);
+        messageStore = new ValidationMessageStore(editContext);
+    }
+
+    private void AddBook()
+    {
+        messageStore!.Clear();
+
+        // Title is required and must contain 2 to 50 characters
+        if (string.IsNullOrWhiteSpace(book.Title))
+        {
+            messageStore!.Add(() => book.Title, "Title is required");
+        }
+        else if (book.Title.Length < 2 || book.Title.Length > 50)
+        {
+            messageStore!.Add(() => book.Title, "Title must be 2-50 characters");
+        }
+
+        // Pages must be >= 2
+        if (book.Pages <= 1)
+        {
+            messageStore!.Add(() => book.Pages, "Pages must >= 2");
+        } 
+
+        // PublishDate must be in the past
+        if(book.PublishDate > DateOnly.FromDateTime(DateTime.Now))
+        {
+            messageStore!.Add(() => book.PublishDate, "PublishDate has to be in the past ");
+        }
+
+        // Genre cannot be blank
+        if (string.IsNullOrWhiteSpace(book.Genre))
+        {
+            messageStore!.Add(() => book.Genre, "A valid Genre must be selected");
+        }
+
+        // Notify UI that validation messages changed
+        editContext.NotifyValidationStateChanged();
+
+        // Check if there are any validation errors
+        if (!editContext.GetValidationMessages().Any())
+        {
+            // Save book info to file
+            string csvPath = Path.Combine(Environment.CurrentDirectory + @"\Data", "books.csv");
+            File.AppendAllText(csvPath, book.ToString() + "\n");
+            feedbackMessage = $"Successfully saved book info to {csvPath}";
+            book = new();
+        }
+
+    }
+}
