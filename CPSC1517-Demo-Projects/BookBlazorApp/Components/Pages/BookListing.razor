@@ -1,0 +1,93 @@
+﻿@page "/books"
+@using Models
+@inject IWebHostEnvironment WebHostEnvironment
+
+<h3>BookListing</h3>
+
+@if (errorMessages.Count > 0)
+{
+    <div class="alert alert-danger">
+        <p>Please fix the following isssues:</p>
+        <ul>
+        @foreach(string currentMessage in errorMessages)
+        {
+            <li>@currentMessage</li>
+        }
+        </ul>
+    </div>
+}
+
+@if (books is not null && books.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Pages</th>
+                <th>Publish Date</th>
+                <th>Genre</th>
+                <th>InStock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var currentBook in books)
+            {
+                <tr>
+                    <td>@currentBook.Title</td>
+                    <td>@currentBook.Pages</td>
+                    <td>@currentBook.PublishDate</td>
+                    <td>@currentBook.Genre</td>
+                    <td>@currentBook.InStock</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <divl class="alert alert-info">
+        There are no books in the library.
+    </divl>
+}
+
+@code {
+    private List<BookNoDataAnnotations>? books;
+    private List<string> errorMessages = new();
+    private string? feedbackMessage;
+
+    protected override void OnInitialized()
+    {
+        string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
+        string csvPath = Path.Combine(dataFolder, "books.csv");
+
+        string[] lines = File.ReadAllLines(csvPath);
+        // Check file contains at least one line of content
+        if (lines.Length > 0)
+        {
+            // Create a new List of books
+            books = new List<BookNoDataAnnotations>();
+            // Iterate through each line and parse each line into a BookNoDataAnnotation 
+            foreach(string currentLine in lines)
+            {
+                try
+                {
+                    BookNoDataAnnotations currentBook = BookNoDataAnnotations.Parse(currentLine);
+                    books.Add(currentBook);
+                }
+                catch(ArgumentNullException ex)
+                {
+                    errorMessages.Add($"File Data Error");
+                }
+                catch(FormatException ex)
+                {
+                    errorMessages.Add($"Record Format Error: {currentLine}");
+                }
+                catch(Exception ex)
+                {
+                    errorMessages.Add($"System Error: {currentLine}");
+                }
+            }
+        }
+        
+    }
+}

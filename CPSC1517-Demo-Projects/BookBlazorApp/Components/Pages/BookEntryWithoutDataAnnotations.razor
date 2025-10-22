@@ -10,7 +10,7 @@
     </div>
 }
 
-<EditForm EditContext="@editContext" OnValidSubmit="@AddBook">
+<EditForm EditContext="@editContext" OnSubmit="@AddBook">
     <!-- Show a summary of all errors we've added -->
     <ValidationSummary />
 
@@ -69,11 +69,20 @@
     {
         editContext = new EditContext(book);
         messageStore = new ValidationMessageStore(editContext);
+
+        // Clear only the edited field's messages
+        // editContext.OnFieldChanged += (_, e) =>
+        // {
+        //     messageStore!.Clear(e.FieldIdentifier);   // clears your custom messages for that field
+        //                                               // Also clear any built-in parsing errors for that field by re-writing them as empty                                                    
+        //     editContext.NotifyValidationStateChanged();
+        // };
     }
 
     private void AddBook()
     {
         messageStore!.Clear();
+        feedbackMessage = null;
 
         // Title is required and must contain 2 to 50 characters
         if (string.IsNullOrWhiteSpace(book.Title))
@@ -98,10 +107,10 @@
         }
 
         // Genre cannot be blank
-        if (string.IsNullOrWhiteSpace(book.Genre))
-        {
-            messageStore!.Add(() => book.Genre, "A valid Genre must be selected");
-        }
+        // if (string.IsNullOrWhiteSpace(book.Genre))
+        // {
+        //     messageStore!.Add(() => book.Genre, "A valid Genre must be selected");
+        // }
 
         // Notify UI that validation messages changed
         editContext.NotifyValidationStateChanged();
@@ -113,7 +122,12 @@
             string csvPath = Path.Combine(Environment.CurrentDirectory + @"\Data", "books.csv");
             File.AppendAllText(csvPath, book.ToString() + "\n");
             feedbackMessage = $"Successfully saved book info to {csvPath}";
+
             book = new();
+        }
+        else
+        {
+            feedbackMessage = "Fix the validation issues first.";
         }
 
     }
