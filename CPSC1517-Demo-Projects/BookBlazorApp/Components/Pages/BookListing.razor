@@ -2,24 +2,68 @@
 @using Models
 @inject IWebHostEnvironment WebHostEnvironment
 
-<h3>BookListing</h3>
+<h3>Book Listing</h3>
 
-@if (errorMessages.Count > 0)
+<fieldset class="mb-3">
+    <legend>Select CSV file to load</legend>
+    <div>
+        <label>
+            <input type="radio" name="csvfile" 
+                checked="@(_selectedCsvFile == "books.csv")"
+                @onchange='() => LoadBooksAsync("books.csv")'>
+            books.csv
+        </label>
+        <label>
+            <input type="radio" name="csvfile"
+                   checked="@(_selectedCsvFile == "bad-data-books.csv")"
+                   @onchange='() => LoadBooksAsync("bad-data-books.csv")'>
+            bad-data-books.csv
+        </label>
+        <label>
+            <input type="radio" name="csvfile"
+                   checked="@(_selectedCsvFile == "empty-books.csv")"
+                   @onchange='() => LoadBooksAsync("empty-books.csv")'>
+            empty-books.csv
+        </label>
+        <label>
+            <input type="radio" name="csvfile"
+                   checked="@(_selectedCsvFile == "does-not-exists-books.csv")"
+                @onchange='() => LoadBooksAsync("does-not-exists-books.csv")'>
+            does-not-exists-books.csv
+        </label>
+    </div>
+</fieldset>
+
+@if (_isLoading)
 {
-    <div class="alert alert-danger">
-        <p>Please fix the following isssues:</p>
-        <ul>
-        @foreach(string currentMessage in errorMessages)
+    <div class="alert alert-secondary" role="status">
+        Loading…
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(_infoMessage))
+{
+    <div class="alert alert-info" role="alert">
+        @_infoMessage
+    </div>
+}
+
+@if (_errors.Count > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <p class="mb-2">Please fix the following isssues:</p>
+        <ul class="mb-0">
+        @foreach(string msg in _errors)
         {
-            <li>@currentMessage</li>
+             <li>@msg</li>
         }
         </ul>
     </div>
 }
 
-@if (books is not null && books.Count > 0)
+@if (_books.Count > 0)
 {
-    <table class="table table-striped">
+    <table class="table table-striped align-middle">
         <thead>
             <tr>
                 <th>Title</th>
@@ -30,64 +74,107 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var currentBook in books)
+            @foreach(var currentBook in _books)
             {
                 <tr>
                     <td>@currentBook.Title</td>
                     <td>@currentBook.Pages</td>
                     <td>@currentBook.PublishDate</td>
                     <td>@currentBook.Genre</td>
-                    <td>@currentBook.InStock</td>
+                    <td>@(currentBook.InStock ? "✅" : "❌")</td>
                 </tr>
             }
         </tbody>
     </table>
 }
-else
+else if (!_isLoading && string.IsNullOrWhiteSpace(_infoMessage) && _errors.Count == 0)
 {
-    <divl class="alert alert-info">
-        There are no books in the library.
-    </divl>
+    <div class="text-muted">
+        No records loaded yet. Choose a CSV above.
+    </div>
 }
-
 @code {
-    private List<BookNoDataAnnotations>? books;
-    private List<string> errorMessages = new();
-    private string? feedbackMessage;
+    // Local State fields
+    private readonly List<BookNoDataAnnotations> _books = new();
+    private readonly List<string> _errors = new();
+    private string? _infoMessage;
+    private bool _isLoading;
+    private string? _selectedCsvFile = "books.csv";  // default selection
 
-    protected override void OnInitialized()
+    /// <summary>
+    /// Loads books from the given CSV file in the "Data" folder under ContentRoot.
+    /// Populates _books, _errors, and _infoMessage.
+    /// </summary>
+    /// <param name="csvFileName"></param>
+    private async Task LoadBooksAsync(string csvFileName)
     {
-        string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
-        string csvPath = Path.Combine(dataFolder, "books.csv");
+        // Clear previous feedback messages
+        _errors.Clear();
+        _infoMessage = null;
+        _books.Clear();
 
-        string[] lines = File.ReadAllLines(csvPath);
-        // Check file contains at least one line of content
-        if (lines.Length > 0)
+        // Turn loading ON before any returns and paint once
+        _isLoading = true;
+        await InvokeAsync(StateHasChanged); // let the "Loading…" render
+
+        try
         {
-            // Create a new List of books
-            books = new List<BookNoDataAnnotations>();
-            // Iterate through each line and parse each line into a BookNoDataAnnotation 
-            foreach(string currentLine in lines)
+            if (string.IsNullOrWhiteSpace(csvFileName))
+            {
+                _infoMessage = "Please select a CSV file.";
+                return;
+            }
+
+            // Define the file path of the csv file
+            string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
+            string csvPath = Path.Combine(dataFolder, csvFileName);
+
+            if (!File.Exists(csvPath))
+            {
+                _errors.Add($"The file \"{csvPath}\" does not exist.");
+                return;
+            }
+
+            // Async I/O to avoid blocking the renderer thread
+            string[] lines = await File.ReadAllLinesAsync(csvPath);
+
+            if (lines.Length == 0)
+            {
+                _infoMessage = $"No data rows found in \"{csvPath}\"";
+                return;
+            }
+
+            foreach (var currentLine in lines)
             {
                 try
                 {
-                    BookNoDataAnnotations currentBook = BookNoDataAnnotations.Parse(currentLine);
-                    books.Add(currentBook);
+                    var currentBook = BookNoDataAnnotations.Parse(currentLine);
+                    _books.Add(currentBook);
                 }
-                catch(ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
-                    errorMessages.Add($"File Data Error");
+                    _errors.Add("File Data Error");
                 }
-                catch(FormatException ex)
+                catch (FormatException)
                 {
-                    errorMessages.Add($"Record Format Error: {currentLine}");
+                    _errors.Add($"Record Format Error: {currentLine}");
                 }
-                catch(Exception ex)
+                catch (Exception)
                 {
-                    errorMessages.Add($"System Error: {currentLine}");
+                    _errors.Add($"System Error: {currentLine}");
                 }
             }
         }
-        
+        finally
+        {
+            _isLoading = false;
+            await InvokeAsync(StateHasChanged); // final render
+        }
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadBooksAsync(_selectedCsvFile!);
+    }
+
 }
