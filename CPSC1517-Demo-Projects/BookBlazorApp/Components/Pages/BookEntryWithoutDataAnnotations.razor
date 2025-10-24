@@ -1,82 +1,91 @@
 ﻿@page "/book/entry1"
+@using BookBlazorApp.ViewModels
 @using Models
+@inject IWebHostEnvironment WebHostEnvironment
+@inject NavigationManager NavManager
+@inject IJSRuntime JS
 
 <h3>BookEntryWithoutDataAnnotations</h3>
 
-@if (feedbackMessage is not null)
+@if (!string.IsNullOrWhiteSpace(feedbackMessage))
 {
-    <div class="alert alert-info">
-        @feedbackMessage
-    </div>
+    <div class="alert alert-info">@feedbackMessage</div>
 }
 
-<EditForm EditContext="@editContext" OnSubmit="@AddBook">
-    <!-- Show a summary of all errors we've added -->
+@* Provide EditContext to ValidationSummary/ValidationMessage without EditForm *@
+<CascadingValue Value="editContext">
+    <!-- Summary of all messages we add to the store -->
     <ValidationSummary />
 
-    <div>
+    <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
-        <InputText id="title" @bind-Value="book.Title" class="form-control" />
+        <input id="title" class="form-control" 
+            @bind="bookForm.Title" />
         <!-- Field-level messages for Title -->
-        <ValidationMessage For="() => book.Title" />
+        <ValidationMessage For="() => bookForm.Title" />
     </div>
 
-    <div>
+    <div class="mb-3">
         <label for="pages" class="form-label">Pages:</label>
-        <InputNumber id="pages" @bind-Value="book.Pages" class="form-control" />
+        <input id="pages" class="form-control" type="number"
+               @bind="bookForm.Pages" />
         <!-- Field-level messages for Pages -->
-        <ValidationMessage For="() => book.Pages" />
+        <ValidationMessage For="() => bookForm.Pages" />
     </div>
 
-    <div>
+    <div class="mb-3">
         <label for="publishdate" class="form-label">Publish Date</label>
-        <InputDate id="publishdate" @bind-Value="book.PublishDate" class="form-control" />
+        <input id="publishdate" class="form-control" type="date"
+               @bind="bookForm.PublishDate"
+                />
         <!-- Field-level messages for PublishDate -->
-        <ValidationMessage For="() => book.PublishDate" />
+        <ValidationMessage For="() => bookForm.PublishDate" />
     </div>
 
-    <div>
+    <div class="mb-3">
         <label for="genre" class="form-label">Genre:</label>
-        <InputSelect id="genre" @bind-Value="book.Genre" class="form-control">
-            <option></option>
-            <option>Anime</option>
-            <option>Fiction</option>
-            <option>Non-Fiction</option>
-            <option>Sports</option>
-        </InputSelect>
+        <select id="genre" class="form-control"
+                @bind="bookForm.Genre"
+                >
+            @foreach (BookGenre genre in Enum.GetValues<BookGenre>().OrderBy(b => b.ToString()))
+            {
+                <option value="@genre">@genre</option>
+            }
+        </select>
         <!-- Field-level messages for Genre -->
-        <ValidationMessage For="() => book.Genre" />
+        <ValidationMessage For="() => bookForm.Genre" />
     </div>
 
-    <div>
-        <label>
-            <InputCheckbox @bind-Value="@book.InStock" /> In Stock
-        </label>
+    <div class="mb-3 form-check">
+        <input id="instock" type="checkbox" class="form-check-input"
+               @bind="@bookForm.InStock" />
+        <label class="form-check-label" for="instock">In Stock</label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Add Button</button>
-</EditForm>
+    <!-- Not a submit button; just a regular click -->
+    <button type="button" class="btn btn-primary" @onclick="AddBook">
+        Add Book
+    </button>
+    <button type="button" class="btn btn-secondary" @onclick="ClearForm">
+        Clear
+    </button>
+    <button type="button" class="btn btn-info" @onclick="NavigateToBookListing">
+        Book Listing
+    </button>
+</CascadingValue>
 
 @code {
-    BookNoDataAnnotations book = new();
-
+    private string? feedbackMessage;
+    // Model (no data annotations)
+    private BookEntryForm bookForm = new();
+    // Manual validation infrastructure
     private EditContext editContext = default!;
     private ValidationMessageStore? messageStore;
 
-    private string? feedbackMessage;
-
     protected override void OnInitialized()
     {
-        editContext = new EditContext(book);
+        editContext = new EditContext(bookForm);
         messageStore = new ValidationMessageStore(editContext);
-
-        // Clear only the edited field's messages
-        // editContext.OnFieldChanged += (_, e) =>
-        // {
-        //     messageStore!.Clear(e.FieldIdentifier);   // clears your custom messages for that field
-        //                                               // Also clear any built-in parsing errors for that field by re-writing them as empty                                                    
-        //     editContext.NotifyValidationStateChanged();
-        // };
     }
 
     private void AddBook()
@@ -84,51 +93,83 @@
         messageStore!.Clear();
         feedbackMessage = null;
 
-        // Title is required and must contain 2 to 50 characters
-        if (string.IsNullOrWhiteSpace(book.Title))
-        {
-            messageStore!.Add(() => book.Title, "Title is required");
-        }
-        else if (book.Title.Length < 2 || book.Title.Length > 50)
-        {
-            messageStore!.Add(() => book.Title, "Title must be 2-50 characters");
-        }
+        // Title: required, 2–50
+        if (string.IsNullOrWhiteSpace(bookForm.Title))
+            messageStore!.Add(() => bookForm.Title, "Title is required");
+        else if (bookForm.Title.Length < 2 || bookForm.Title.Length > 50)
+            messageStore!.Add(() => bookForm.Title, "Title must be 2–50 characters");
 
-        // Pages must be >= 2
-        if (book.Pages <= 1)
-        {
-            messageStore!.Add(() => book.Pages, "Pages must >= 2");
-        } 
+        // Pages: >= 2
+        if (bookForm.Pages < 2)
+            messageStore!.Add(() => bookForm.Pages, "Pages must be ≥ 2");
 
-        // PublishDate must be in the past
-        if(book.PublishDate > DateOnly.FromDateTime(DateTime.Now))
-        {
-            messageStore!.Add(() => book.PublishDate, "PublishDate has to be in the past ");
-        }
+        // PublishDate: past
+        if (bookForm.PublishDate > DateOnly.FromDateTime(DateTime.Now))
+            messageStore!.Add(() => bookForm.PublishDate, "PublishDate must to be in the past or present.");
 
-        // Genre cannot be blank
-        // if (string.IsNullOrWhiteSpace(book.Genre))
-        // {
-        //     messageStore!.Add(() => book.Genre, "A valid Genre must be selected");
-        // }
-
-        // Notify UI that validation messages changed
-        editContext.NotifyValidationStateChanged();
-
-        // Check if there are any validation errors
+        // If no messages, persist and reset
         if (!editContext.GetValidationMessages().Any())
         {
-            // Save book info to file
-            string csvPath = Path.Combine(Environment.CurrentDirectory + @"\Data", "books.csv");
-            File.AppendAllText(csvPath, book.ToString() + "\n");
-            feedbackMessage = $"Successfully saved book info to {csvPath}";
+            try
+            {
+                string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
+                Directory.CreateDirectory(dataFolder);
 
-            book = new();
+                string csvPath = Path.Combine(dataFolder, "books.csv");
+                BookNoDataAnnotations bookModel = BookEntryForm.ToDomainModel(bookForm);
+                File.AppendAllText(csvPath, bookModel.ToString() + Environment.NewLine);
+                feedbackMessage = $"Successfully saved info to {csvPath}";
+
+                bookForm = new();
+                editContext = new EditContext(bookForm);
+            }
+            catch (Exception ex)
+            {
+                feedbackMessage = $"Failed to save file with exception {ex.Message}";
+            }
+            StateHasChanged();
         }
         else
         {
             feedbackMessage = "Fix the validation issues first.";
         }
+    }
+
+    private async void ClearForm()
+    {
+        // feedbackMessage = "ClearForm button clicked";
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to clear this form and lose all changes??");
+        if (confirmed)
+        {
+            bookForm = new();
+            editContext = new EditContext(bookForm);
+            feedbackMessage = "Form cleared.";
+            StateHasChanged();
+        }
+        else
+        {
+            feedbackMessage = "Clear form canceled.";
+            StateHasChanged();
+        }
 
     }
+
+    private async void NavigateToBookListing()
+    {
+        // feedbackMessage = "Book Listing button clicked";
+        bool confirmed = await JS.InvokeAsync<bool>(
+            "confirm",
+            "Are you sure you want to navigate to the book listing page and lose all changes?");
+        if (confirmed)
+        {
+            NavManager.NavigateTo("/books");
+        }
+        else
+        {
+            feedbackMessage = "Report navigation canceled.";
+            StateHasChanged();
+        }
+
+    }
+    
 }

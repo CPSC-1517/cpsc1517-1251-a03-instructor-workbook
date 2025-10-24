@@ -8,11 +8,23 @@
         public BookGenre Genre { get; set; } = BookGenre.Fantasy;
         public bool InStock { get; set; }
 
-        public BookNoDataAnnotations() { }
-
         public BookNoDataAnnotations(string title, int pages, 
             DateOnly publishDate, BookGenre genre, bool inStock)
         {
+            if (string.IsNullOrWhiteSpace(title) || title.Length is < 2 or > 50)
+            {
+                throw new ArgumentException("Title must be 2–50 chars.", nameof(title));
+            }
+
+            if (pages < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pages));
+            }
+            if (publishDate > DateOnly.FromDateTime(DateTime.Today))
+            {
+                throw new ArgumentOutOfRangeException(nameof(publishDate));
+            }
+
             Title = title;
             Pages = pages;
             PublishDate = publishDate;
