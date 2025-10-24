@@ -11,25 +11,25 @@
             <input type="radio" name="csvfile" 
                 checked="@(_selectedCsvFile == "books.csv")"
                 @onchange='() => LoadBooksAsync("books.csv")'>
-            books.csv
+            Good Data File
         </label>
         <label>
             <input type="radio" name="csvfile"
                    checked="@(_selectedCsvFile == "bad-data-books.csv")"
                    @onchange='() => LoadBooksAsync("bad-data-books.csv")'>
-            bad-data-books.csv
+            Some Bad Data File
         </label>
         <label>
             <input type="radio" name="csvfile"
                    checked="@(_selectedCsvFile == "empty-books.csv")"
                    @onchange='() => LoadBooksAsync("empty-books.csv")'>
-            empty-books.csv
+            Empty Data File
         </label>
         <label>
             <input type="radio" name="csvfile"
                    checked="@(_selectedCsvFile == "does-not-exists-books.csv")"
                 @onchange='() => LoadBooksAsync("does-not-exists-books.csv")'>
-            does-not-exists-books.csv
+            File Does Not Exists
         </label>
     </div>
 </fieldset>
@@ -151,17 +151,21 @@ else if (!_isLoading && string.IsNullOrWhiteSpace(_infoMessage) && _errors.Count
                     var currentBook = BookNoDataAnnotations.Parse(currentLine);
                     _books.Add(currentBook);
                 }
-                catch (ArgumentNullException)
+                catch (ArgumentNullException ex)
                 {
-                    _errors.Add("File Data Error");
+                    _errors.Add($"File Data Error {ex.Message} with line {currentLine}");
                 }
-                catch (FormatException)
+                catch(ArgumentException ex)
                 {
-                    _errors.Add($"Record Format Error: {currentLine}");
+                    _errors.Add($"Data Error: {ex.Message} with line {currentLine}");
                 }
-                catch (Exception)
+                catch (FormatException ex)
                 {
-                    _errors.Add($"System Error: {currentLine}");
+                    _errors.Add($"Record Format Error: {ex.Message} with line {currentLine}");
+                }
+                catch (Exception ex)
+                {
+                    _errors.Add($"System Error: {ex.Message} with line {currentLine}");
                 }
             }
         }
