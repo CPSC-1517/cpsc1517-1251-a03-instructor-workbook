@@ -1,6 +1,11 @@
-using WestWindApp.Components;
-
+using WestWindBlazorApp.Components;
+using Microsoft.EntityFrameworkCore;    // for UseSqlServer extension method
+using WestWindSystem;                   // for WestWindSystem extension methods
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("WWDB");
+//builder.Services.AddDbContextFactory<WestWindContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddWestWindDependencies(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

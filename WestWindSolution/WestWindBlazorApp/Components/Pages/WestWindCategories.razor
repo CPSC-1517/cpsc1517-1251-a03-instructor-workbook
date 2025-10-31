@@ -1,0 +1,34 @@
+﻿@page "/categories"
+@using WestWindSystem.BLL
+@using WestWindSystem.Entities
+@inject CategoryServices CategoryServices
+
+<h3>WestWindCategories</h3>
+
+@if (categories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var c in categories)
+        {
+            <li>@c.CategoryName (@c.Description)</li>
+        }
+    </ul>
+}
+
+@code {
+
+    // [Inject]
+    // public CategoryServices CategoryServices { get; set; }
+
+    private List<Category>? categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await CategoryServices.Category_GetAllAsync();
+    }
+
+}
