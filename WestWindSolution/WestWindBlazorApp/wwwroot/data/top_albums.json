@@ -1,0 +1,1552 @@
+[
+    {
+        "album": "Brother of the Son",
+        "artistName": "Don Francisco",
+        "releaseDate": "1976-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "narrative, acoustic, spiritual, heartfelt, storytelling, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "12,345",
+        "numberReviews": 234
+    },
+    {
+        "album": "For Him Who Has Ears to Hear",
+        "artistName": "Keith Green",
+        "releaseDate": "1977-05-20",
+        "genres": "Contemporary Christian, Gospel",
+        "descriptors": "passionate, piano-driven, worshipful, convicting, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "15,678",
+        "numberReviews": 321
+    },
+    {
+        "album": "Forever Young",
+        "artistName": "Alphaville",
+        "releaseDate": "1984-09-27",
+        "genres": "Synth-pop, New Wave",
+        "descriptors": "nostalgic, melancholic, anthemic, synth-driven, reflective, emotional, timeless",
+        "averageRating": 4.8,
+        "numberRatings": "89,432",
+        "numberReviews": 1102
+    },
+    {
+        "album": "Planet Waves",
+        "artistName": "Bob Dylan",
+        "releaseDate": "1974-01-17",
+        "genres": "Folk Rock, Roots Rock",
+        "descriptors": "introspective, heartfelt, acoustic, lyrical, classic, poetic, Americana",
+        "averageRating": 4.6,
+        "numberRatings": "45,321",
+        "numberReviews": 678
+    },
+    {
+        "album": "Out of Order",
+        "artistName": "Rod Stewart",
+        "releaseDate": "1988-05-23",
+        "genres": "Pop Rock, Soft Rock",
+        "descriptors": "anthemic, uplifting, polished, emotional, radio-friendly, melodic",
+        "averageRating": 4.4,
+        "numberRatings": "38,765",
+        "numberReviews": 512
+    },
+    {
+        "album": "Petra",
+        "artistName": "Petra",
+        "releaseDate": "1974-01-01",
+        "genres": "Christian Rock, Hard Rock",
+        "descriptors": "energetic, guitar-driven, evangelical, pioneering, male vocals",
+        "averageRating": 4.3,
+        "numberRatings": "9,876",
+        "numberReviews": 198
+    },
+    {
+        "album": "Harvest",
+        "artistName": "Neil Young",
+        "releaseDate": "1972-02-01",
+        "genres": "Folk Rock, Country Rock",
+        "descriptors": "melancholic, acoustic, introspective, classic, male vocals",
+        "averageRating": 4.8,
+        "numberRatings": "98,765",
+        "numberReviews": 1234
+    },
+    {
+        "album": "Rock of Ages... Hymns and Faith",
+        "artistName": "Amy Grant",
+        "releaseDate": "2005-05-03",
+        "genres": "Contemporary Christian, Hymns",
+        "descriptors": "uplifting, traditional, worshipful, soothing, female vocals",
+        "averageRating": 4.6,
+        "numberRatings": "23,456",
+        "numberReviews": 345
+    },
+    {
+        "album": "Forgiven",
+        "artistName": "Don Francisco",
+        "releaseDate": "1977-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "reflective, acoustic, spiritual, storytelling, male vocals",
+        "averageRating": 4.4,
+        "numberRatings": "10,234",
+        "numberReviews": 198
+    },
+    {
+        "album": "No Compromise",
+        "artistName": "Keith Green",
+        "releaseDate": "1978-11-01",
+        "genres": "Contemporary Christian, Gospel",
+        "descriptors": "passionate, piano-driven, worshipful, convicting, male vocals",
+        "averageRating": 4.8,
+        "numberRatings": "14,567",
+        "numberReviews": 312
+    },
+    {
+        "album": "Come and Join Us",
+        "artistName": "Petra",
+        "releaseDate": "1977-01-01",
+        "genres": "Christian Rock, Hard Rock",
+        "descriptors": "energetic, guitar-driven, evangelical, pioneering, male vocals",
+        "averageRating": 4.2,
+        "numberRatings": "8,765",
+        "numberReviews": 176
+    },
+    {
+        "album": "After the Gold Rush",
+        "artistName": "Neil Young",
+        "releaseDate": "1970-09-19",
+        "genres": "Folk Rock, Country Rock",
+        "descriptors": "melancholic, acoustic, introspective, classic, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "95,432",
+        "numberReviews": 1123
+    },
+    {
+        "album": "My Father's Eyes",
+        "artistName": "Amy Grant",
+        "releaseDate": "1979-04-20",
+        "genres": "Contemporary Christian, Pop",
+        "descriptors": "uplifting, melodic, worshipful, soothing, female vocals",
+        "averageRating": 4.5,
+        "numberRatings": "20,345",
+        "numberReviews": 289
+    },
+    {
+        "album": "OK Computer",
+        "artistName": "Radiohead",
+        "releaseDate": "16 June 1997",
+        "genres": "Alternative Rock, Art Rock",
+        "descriptors": "melancholic, anxious, futuristic, alienation, existential, male vocals, atmospheric, lonely, cold, introspective",
+        "averageRating": 4.23,
+        "numberRatings": "70,382",
+        "numberReviews": 1531
+    },
+    {
+        "album": "Wish You Were Here",
+        "artistName": "Pink Floyd",
+        "releaseDate": "12 September 1975",
+        "genres": "Progressive Rock, Art Rock",
+        "descriptors": "melancholic, atmospheric, progressive, male vocals, concept album, introspective, serious, longing, bittersweet, meditative",
+        "averageRating": 4.29,
+        "numberRatings": "48,662",
+        "numberReviews": 983
+    },
+    {
+        "album": "In the Court of the Crimson King",
+        "artistName": "King Crimson",
+        "releaseDate": "10 October 1969",
+        "genres": "Progressive Rock, Art Rock",
+        "descriptors": "fantasy, epic, progressive, philosophical, complex, surreal, poetic, male vocals, melancholic, technical",
+        "averageRating": 4.30,
+        "numberRatings": "44,943",
+        "numberReviews": 870
+    },
+    {
+        "album": "Kid A",
+        "artistName": "Radiohead",
+        "releaseDate": "3 October 2000",
+        "genres": "Art Rock, Experimental Rock, Electronic",
+        "descriptors": "cold, melancholic, futuristic, atmospheric, anxious, cryptic, sombre, abstract, introspective, male vocals",
+        "averageRating": 4.21,
+        "numberRatings": "58,590",
+        "numberReviews": 734
+    },
+    {
+        "album": "To Pimp a Butterfly",
+        "artistName": "Kendrick Lamar",
+        "releaseDate": "15 March 2015",
+        "genres": "Conscious Hip Hop, West Coast Hip Hop, Jazz Rap",
+        "descriptors": "political, conscious, poetic, protest, concept album, introspective, urban, male vocals, eclectic, passionate",
+        "averageRating": 4.27,
+        "numberRatings": "44,206",
+        "numberReviews": 379
+    },
+    {
+        "album": "Loveless",
+        "artistName": "My Bloody Valentine",
+        "releaseDate": "4 November 1991",
+        "genres": "Shoegaze, Noise Pop",
+        "descriptors": "noisy, ethereal, atmospheric, romantic, dense, hypnotic, love, psychedelic, lush, bittersweet",
+        "averageRating": 4.24,
+        "numberRatings": "49,887",
+        "numberReviews": 1223
+    },
+    {
+        "album": "The Dark Side of the Moon",
+        "artistName": "Pink Floyd",
+        "releaseDate": "23 March 1973",
+        "genres": "Art Rock, Progressive Rock",
+        "descriptors": "philosophical, atmospheric, introspective, existential, mellow, concept album, male vocals, psychedelic, progressive, epic",
+        "averageRating": 4.20,
+        "numberRatings": "57,622",
+        "numberReviews": 1549
+    },
+    {
+        "album": "Abbey Road",
+        "artistName": "The Beatles",
+        "releaseDate": "26 September 1969",
+        "genres": "Pop Rock",
+        "descriptors": "melodic, warm, male vocals, bittersweet, summer, uplifting, love, romantic, medley, happy",
+        "averageRating": 4.25,
+        "numberRatings": "44,544",
+        "numberReviews": 961
+    },
+    {
+        "album": "The Velvet Underground & Nico",
+        "artistName": "The Velvet Underground & Nico",
+        "releaseDate": "12 March 1967",
+        "genres": "Art Rock, Experimental Rock",
+        "descriptors": "drugs, sexual, raw, urban, noisy, nihilistic, avant-garde, male vocals, eclectic, female vocals",
+        "averageRating": 4.23,
+        "numberRatings": "45,570",
+        "numberReviews": 929
+    },
+    {
+        "album": "The Rise and Fall of Ziggy Stardust and the Spiders From Mars",
+        "artistName": "David Bowie",
+        "releaseDate": "16 June 1972",
+        "genres": "Glam Rock, Pop Rock",
+        "descriptors": "science fiction, melodic, anthemic, concept album, passionate, male vocals, rock opera, bittersweet, energetic, triumphant",
+        "averageRating": 4.26,
+        "numberRatings": "39,501",
+        "numberReviews": 721
+    },
+    {
+        "album": "Revolver",
+        "artistName": "The Beatles",
+        "releaseDate": "5 August 1966",
+        "genres": "Pop Rock, Psychedelic Pop",
+        "descriptors": "psychedelic, melodic, male vocals, drugs, eclectic, warm, playful, quirky, happy, surreal",
+        "averageRating": 4.23,
+        "numberRatings": "43,178",
+        "numberReviews": 1160
+    },
+    {
+        "album": "Madvillainy",
+        "artistName": "Madvillain",
+        "releaseDate": "23 March 2004",
+        "genres": "Abstract Hip Hop",
+        "descriptors": "sampling, playful, cryptic, humorous, abstract, mysterious, eclectic, surreal, male vocals, boastful",
+        "averageRating": 4.26,
+        "numberRatings": "35,573",
+        "numberReviews": 376
+    },
+    {
+        "album": "Remain in Light",
+        "artistName": "Talking Heads",
+        "releaseDate": "8 October 1980",
+        "genres": "New Wave, Post-Punk",
+        "descriptors": "rhythmic, anxious, energetic, male vocals, playful, cryptic, abstract, quirky, philosophical, repetitive",
+        "averageRating": 4.25,
+        "numberRatings": "36,196",
+        "numberReviews": 520
+    },
+    {
+        "album": "The Black Saint and the Sinner Lady",
+        "artistName": "Mingus",
+        "releaseDate": "July 1963",
+        "genres": "Avant-Garde Jazz, Third Stream",
+        "descriptors": "instrumental, complex, passionate, suite, dense, avant-garde, suspenseful, technical, concept album, manic",
+        "averageRating": 4.34,
+        "numberRatings": "20,251",
+        "numberReviews": 365
+    },
+    {
+        "album": "In Rainbows",
+        "artistName": "Radiohead",
+        "releaseDate": "10 October 2007",
+        "genres": "Art Rock, Alternative Rock",
+        "descriptors": "lush, male vocals, melancholic, introspective, bittersweet, warm, mellow, atmospheric, ethereal, longing",
+        "averageRating": 4.18,
+        "numberRatings": "48,484",
+        "numberReviews": 756
+    },
+    {
+        "album": "A Love Supreme",
+        "artistName": "John Coltrane",
+        "releaseDate": "February 1965",
+        "genres": "Spiritual Jazz",
+        "descriptors": "passionate, spiritual, instrumental, improvisation, complex, suite, acoustic, meditative, avant-garde, religious",
+        "averageRating": 4.30,
+        "numberRatings": "25,040",
+        "numberReviews": 433
+    },
+    {
+        "album": "good kid, m.A.A.d city",
+        "artistName": "Kendrick Lamar",
+        "releaseDate": "22 October 2012",
+        "genres": "West Coast Hip Hop, Conscious Hip Hop",
+        "descriptors": "urban, crime, concept album, conscious, introspective, male vocals, passionate, existential, violence, bittersweet",
+        "averageRating": 4.20,
+        "numberRatings": "38,939",
+        "numberReviews": 315
+    },
+    {
+        "album": "First Hand",
+        "artistName": "Steven Curtis Chapman",
+        "releaseDate": "1987-06-01",
+        "genres": "Contemporary Christian, Pop Rock",
+        "descriptors": "uplifting, melodic, faith-based, energetic, male vocals",
+        "averageRating": 4.3,
+        "numberRatings": "8,765",
+        "numberReviews": 154
+    },
+    {
+        "album": "Got to Tell Somebody",
+        "artistName": "Don Francisco",
+        "releaseDate": "1979-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "narrative, acoustic, spiritual, storytelling, male vocals",
+        "averageRating": 4.6,
+        "numberRatings": "9,432",
+        "numberReviews": 210
+    },
+    {
+        "album": "Songs for the Shepherd",
+        "artistName": "Keith Green",
+        "releaseDate": "1982-01-01",
+        "genres": "Contemporary Christian, Gospel",
+        "descriptors": "worshipful, piano-driven, heartfelt, devotional, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "11,234",
+        "numberReviews": 198
+    },
+    {
+        "album": "More Power to Ya",
+        "artistName": "Petra",
+        "releaseDate": "1982-01-01",
+        "genres": "Christian Rock, Hard Rock",
+        "descriptors": "energetic, guitar-driven, evangelical, pioneering, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "10,567",
+        "numberReviews": 176
+    },
+    {
+        "album": "Comes a Time",
+        "artistName": "Neil Young",
+        "releaseDate": "1978-10-21",
+        "genres": "Folk Rock, Country Rock",
+        "descriptors": "melancholic, acoustic, introspective, classic, male vocals",
+        "averageRating": 4.6,
+        "numberRatings": "85,432",
+        "numberReviews": 1023
+    },
+    {
+        "album": "Unguarded",
+        "artistName": "Amy Grant",
+        "releaseDate": "1985-05-13",
+        "genres": "Contemporary Christian, Pop",
+        "descriptors": "uplifting, melodic, worshipful, soothing, female vocals",
+        "averageRating": 4.4,
+        "numberRatings": "19,876",
+        "numberReviews": 289
+    },
+    {
+        "album": "Back to the Street",
+        "artistName": "Petra",
+        "releaseDate": "1986-01-01",
+        "genres": "Christian Rock, Hard Rock",
+        "descriptors": "energetic, guitar-driven, evangelical, pioneering, male vocals",
+        "averageRating": 4.3,
+        "numberRatings": "9,876",
+        "numberReviews": 198
+    },
+    {
+        "album": "The Final Word",
+        "artistName": "Michael Card",
+        "releaseDate": "1987-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "reflective, acoustic, spiritual, storytelling, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "10,234",
+        "numberReviews": 198
+    },
+    {
+        "album": "Heart in Motion",
+        "artistName": "Amy Grant",
+        "releaseDate": "1991-03-05",
+        "genres": "Contemporary Christian, Pop",
+        "descriptors": "uplifting, melodic, worshipful, soothing, female vocals",
+        "averageRating": 4.6,
+        "numberRatings": "23,456",
+        "numberReviews": 345
+    },
+    {
+        "album": "Harvest Moon",
+        "artistName": "Neil Young",
+        "releaseDate": "1992-11-02",
+        "genres": "Folk Rock, Country Rock",
+        "descriptors": "melancholic, acoustic, introspective, classic, male vocals",
+        "averageRating": 4.8,
+        "numberRatings": "98,765",
+        "numberReviews": 1234
+    },
+    {
+        "album": "Paranoid",
+        "artistName": "Black Sabbath",
+        "releaseDate": "18 September 1970",
+        "genres": "Heavy Metal, Hard Rock",
+        "descriptors": "heavy, dark, war, political, ominous, male vocals, drugs, science fiction, pessimistic, alienation",
+        "averageRating": 4.19,
+        "numberRatings": "35,870",
+        "numberReviews": 582
+    },
+    {
+        "album": "Kind of Blue",
+        "artistName": "Miles Davis",
+        "releaseDate": "17 August 1959",
+        "genres": "Modal Jazz, Cool Jazz",
+        "descriptors": "instrumental, mellow, improvisation, nocturnal, soothing, calm, acoustic, meditative",
+        "averageRating": 4.23,
+        "numberRatings": "29,907",
+        "numberReviews": 549
+    },
+    {
+        "album": "Pet Sounds",
+        "artistName": "The Beach Boys",
+        "releaseDate": "16 May 1966",
+        "genres": "Baroque Pop",
+        "descriptors": "Wall of Sound, warm, bittersweet, love, romantic, melancholic, lush, melodic, introspective, vocal group",
+        "averageRating": 4.18,
+        "numberRatings": "36,305",
+        "numberReviews": 727
+    },
+    {
+        "album": "The Word: Recapturing the Imagination",
+        "artistName": "Michael Card",
+        "releaseDate": "1992-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "theological, acoustic, introspective, storytelling, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "7,890",
+        "numberReviews": 145
+    },
+    {
+        "album": "Speechless",
+        "artistName": "Steven Curtis Chapman",
+        "releaseDate": "1999-06-15",
+        "genres": "Contemporary Christian, Pop Rock",
+        "descriptors": "uplifting, melodic, faith-based, energetic, male vocals",
+        "averageRating": 4.6,
+        "numberRatings": "12,345",
+        "numberReviews": 210
+    },
+    {
+        "album": "The Traveler",
+        "artistName": "Don Francisco",
+        "releaseDate": "1981-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "narrative, acoustic, spiritual, storytelling, male vocals",
+        "averageRating": 4.4,
+        "numberRatings": "6,789",
+        "numberReviews": 123
+    },
+    {
+        "album": "The Prodigal Son",
+        "artistName": "Keith Green",
+        "releaseDate": "1983-08-15",
+        "genres": "Contemporary Christian, Gospel",
+        "descriptors": "passionate, piano-driven, worshipful, convicting, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "10,234",
+        "numberReviews": 198
+    },
+    {
+        "album": "Beyond Belief",
+        "artistName": "Petra",
+        "releaseDate": "1990-06-20",
+        "genres": "Christian Rock, Hard Rock",
+        "descriptors": "energetic, guitar-driven, evangelical, pioneering, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "9,876",
+        "numberReviews": 176
+    },
+    {
+        "album": "Rust Never Sleeps",
+        "artistName": "Neil Young",
+        "releaseDate": "1979-07-02",
+        "genres": "Folk Rock, Country Rock",
+        "descriptors": "melancholic, acoustic, introspective, classic, male vocals",
+        "averageRating": 4.8,
+        "numberRatings": "95,432",
+        "numberReviews": 1123
+    },
+    {
+        "album": "Lead Me On",
+        "artistName": "Amy Grant",
+        "releaseDate": "1988-06-28",
+        "genres": "Contemporary Christian, Pop",
+        "descriptors": "uplifting, melodic, worshipful, soothing, female vocals",
+        "averageRating": 4.6,
+        "numberRatings": "20,345",
+        "numberReviews": 289
+    },
+    {
+        "album": "Galveston",
+        "artistName": "Glen Campbell",
+        "releaseDate": "1969-03-17",
+        "genres": "Country, Pop",
+        "descriptors": "melodic, heartfelt, storytelling, classic, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "18,765",
+        "numberReviews": 234
+    },
+    {
+        "album": "School's Out",
+        "artistName": "Alice Cooper",
+        "releaseDate": "1972-06-26",
+        "genres": "Hard Rock, Glam Rock",
+        "descriptors": "energetic, theatrical, rebellious, classic, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "22,345",
+        "numberReviews": 345
+    },
+    {
+        "album": "Alice",
+        "artistName": "Tom Waits",
+        "releaseDate": "2002-05-07",
+        "genres": "Experimental Rock, Jazz, Chamber Music",
+        "descriptors": "haunting, theatrical, melancholic, avant-garde, poetic, surreal, dreamlike",
+        "averageRating": 4.6,
+        "numberRatings": "12,345",
+        "numberReviews": 234
+    },
+    {
+        "album": "Coal Miner's Daughter",
+        "artistName": "Loretta Lynn",
+        "releaseDate": "1970-01-01",
+        "genres": "Country",
+        "descriptors": "narrative, heartfelt, traditional, classic, female vocals",
+        "averageRating": 4.6,
+        "numberRatings": "19,876",
+        "numberReviews": 289
+    },
+    {
+        "album": "Illmatic",
+        "artistName": "Nas",
+        "releaseDate": "19 April 1994",
+        "genres": "East Coast Hip Hop, Boom Bap, Hardcore Hip Hop",
+        "descriptors": "urban, crime, introspective, sampling, philosophical, conscious, rhythmic, drugs, male vocals, boastful",
+        "averageRating": 4.20,
+        "numberRatings": "30,886",
+        "numberReviews": 619
+    },
+    {
+        "album": "Lift Yr. Skinny Fists Like Antennas to Heaven!",
+        "artistName": "Godspeed You Black Emperor!",
+        "releaseDate": "9 October 2000",
+        "genres": "Post-Rock",
+        "descriptors": "instrumental, epic, melancholic, atmospheric, apocalyptic, suspenseful, suite, sampling, complex, hypnotic",
+        "averageRating": 4.17,
+        "numberRatings": "34,973",
+        "numberReviews": 612
+    },
+    {
+        "album": "In the Aeroplane Over the Sea",
+        "artistName": "Neutral Milk Hotel",
+        "releaseDate": "10 February 1998",
+        "genres": "Indie Folk, Indie Rock",
+        "descriptors": "passionate, poetic, death, cryptic, surreal, bittersweet, acoustic, melodic, male vocals, love",
+        "averageRating": 4.09,
+        "numberRatings": "47,979",
+        "numberReviews": 968
+    },
+    {
+        "album": "Sgt. Pepper's Lonely Hearts Club Band",
+        "artistName": "The Beatles",
+        "releaseDate": "1 June 1967",
+        "genres": "Psychedelic Pop, Pop Rock",
+        "descriptors": "psychedelic, playful, melodic, male vocals, warm, optimistic, eclectic, lush, uplifting, drugs",
+        "averageRating": 4.13,
+        "numberRatings": "43,576",
+        "numberReviews": 863
+    },
+    {
+        "album": "The Mission",
+        "artistName": "Michael Card",
+        "releaseDate": "1983-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "biblical, narrative, acoustic, introspective, male vocals",
+        "averageRating": 4.4,
+        "numberRatings": "6,543",
+        "numberReviews": 132
+    },
+    {
+        "album": "Heaven in the Real World",
+        "artistName": "Steven Curtis Chapman",
+        "releaseDate": "1994-07-05",
+        "genres": "Contemporary Christian, Pop Rock",
+        "descriptors": "hopeful, inspirational, melodic, uplifting, male vocals",
+        "averageRating": 4.7,
+        "numberRatings": "13,487",
+        "numberReviews": 242
+    },
+    {
+        "album": "Vision of the Valley",
+        "artistName": "Don Francisco",
+        "releaseDate": "1981-01-01",
+        "genres": "Contemporary Christian, Folk",
+        "descriptors": "devotional, gentle, spiritual, acoustic, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "7,112",
+        "numberReviews": 118
+    },
+    {
+        "album": "I Only Want to See You There",
+        "artistName": "Keith Green",
+        "releaseDate": "1983-01-01",
+        "genres": "Gospel, Worship",
+        "descriptors": "worshipful, passionate, reflective, piano-led, male vocals",
+        "averageRating": 4.6,
+        "numberRatings": "9,201",
+        "numberReviews": 176
+    },
+    {
+        "album": "Not of This World",
+        "artistName": "Petra",
+        "releaseDate": "1983-01-01",
+        "genres": "Christian Rock",
+        "descriptors": "bold, hard-hitting, spiritual warfare, energetic, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "10,155",
+        "numberReviews": 198
+    },
+    {
+        "album": "Freedom",
+        "artistName": "Alice Cooper",
+        "releaseDate": "1987-10-06",
+        "genres": "Hard Rock, Shock Rock",
+        "descriptors": "dark, rebellious, intense, theatrical, male vocals",
+        "averageRating": 4.2,
+        "numberRatings": "17,432",
+        "numberReviews": 201
+    },
+    {
+        "album": "Jesus Is Coming Soon",
+        "artistName": "Loretta Lynn",
+        "releaseDate": "1973-01-01",
+        "genres": "Country, Gospel",
+        "descriptors": "faith-based, southern gospel, sincere, traditional, female vocals",
+        "averageRating": 4.4,
+        "numberRatings": "8,123",
+        "numberReviews": 156
+    },
+    {
+        "album": "Southern Nights",
+        "artistName": "Glen Campbell",
+        "releaseDate": "1977-02-14",
+        "genres": "Country Pop",
+        "descriptors": "smooth, nostalgic, reflective, classic, male vocals",
+        "averageRating": 4.5,
+        "numberRatings": "14,789",
+        "numberReviews": 231
+    },
+    {
+        "album": "The Hits",
+        "artistName": "Amy Grant",
+        "releaseDate": "1986-10-28",
+        "genres": "Contemporary Christian, Pop",
+        "descriptors": "retrospective, melodic, uplifting, emotional, female vocals",
+        "averageRating": 4.6,
+        "numberRatings": "21,334",
+        "numberReviews": 307
+    },
+    {
+        "album": "Everybody Knows This Is Nowhere",
+        "artistName": "Neil Young",
+        "releaseDate": "1969-05-14",
+        "genres": "Rock, Country Rock",
+        "descriptors": "raw, guitar-heavy, classic, heartfelt, male vocals",
+        "averageRating": 4.8,
+        "numberRatings": "89,432",
+        "numberReviews": 1102
+    },
+    {
+        "album": "Enter the Wu-Tang (36 Chambers)",
+        "artistName": "Wu-Tang Clan",
+        "releaseDate": "9 November 1993",
+        "genres": "East Coast Hip Hop, Boom Bap, Hardcore Hip Hop",
+        "descriptors": "urban, aggressive, raw, crime, boastful, rhythmic, energetic, violence, dark, sampling",
+        "averageRating": 4.19,
+        "numberRatings": "27,579",
+        "numberReviews": 425
+    },
+    {
+        "album": "Red",
+        "artistName": "King Crimson",
+        "releaseDate": "6 October 1974",
+        "genres": "Progressive Rock, Art Rock",
+        "descriptors": "dark, anxious, heavy, technical, ominous, complex, uncommon time signatures, progressive, male vocals, nocturnal",
+        "averageRating": 4.21,
+        "numberRatings": "23,525",
+        "numberReviews": 405
+    },
+    {
+        "album": "My Beautiful Dark Twisted Fantasy",
+        "artistName": "Kanye West",
+        "releaseDate": "22 November 2010",
+        "genres": "Pop Rap, Hip Hop",
+        "descriptors": "epic, boastful, passionate, sampling, hedonistic, vulgar, melodic, anthemic, introspective, male vocals",
+        "averageRating": 4.07,
+        "numberRatings": "48,415",
+        "numberReviews": 636
+    },
+    {
+        "album": "Pink Moon",
+        "artistName": "Nick Drake",
+        "releaseDate": "25 February 1972",
+        "genres": "Contemporary Folk, Singer/Songwriter",
+        "descriptors": "acoustic, melancholic, lonely, mellow, introspective, poetic, calm, male vocals, pastoral, soft",
+        "averageRating": 4.18,
+        "numberRatings": "29,572",
+        "numberReviews": 536
+    },
+    {
+        "album": "Spiderland",
+        "artistName": "Slint",
+        "releaseDate": "27 March 1991",
+        "genres": "Post-Rock, Post-Hardcore, Math Rock",
+        "descriptors": "lonely, anxious, sombre, uncommon time signatures, dark, suspenseful, melancholic, atmospheric, cryptic, ominous",
+        "averageRating": 4.15,
+        "numberRatings": "32,954",
+        "numberReviews": 452
+    },
+    {
+        "album": "Disintegration",
+        "artistName": "The Cure",
+        "releaseDate": "2 May 1989",
+        "genres": "Gothic Rock, Post-Punk",
+        "descriptors": "melancholic, romantic, ethereal, atmospheric, nocturnal, sad, bittersweet, love, introspective, male vocals",
+        "averageRating": 4.17,
+        "numberRatings": "29,436",
+        "numberReviews": 413
+    },
+    {
+        "album": "The Beatles [White Album]",
+        "artistName": "The Beatles",
+        "releaseDate": "22 November 1968",
+        "genres": "Pop Rock, Rock",
+        "descriptors": "eclectic, melodic, playful, male vocals, quirky, energetic, introspective, love, sarcastic, rebellious",
+        "averageRating": 4.14,
+        "numberRatings": "35,545",
+        "numberReviews": 1085
+    },
+    {
+        "album": "Music for Airports",
+        "artistName": "Brian Eno",
+        "releaseDate": "1978-03-01",
+        "genres": "Ambient, Instrumental",
+        "descriptors": "minimalist, atmospheric, calming, spacious, meditative",
+        "averageRating": 4.7,
+        "numberRatings": "22,432",
+        "numberReviews": 512
+    },
+    {
+        "album": "A Day Without Rain",
+        "artistName": "Enya",
+        "releaseDate": "2000-11-21",
+        "genres": "New Age, Ambient, Instrumental",
+        "descriptors": "soothing, lush, serene, ethereal, nature-inspired",
+        "averageRating": 4.6,
+        "numberRatings": "34,987",
+        "numberReviews": 642
+    },
+    {
+        "album": "Ocean Waves",
+        "artistName": "Nature Sounds",
+        "releaseDate": "2010-01-01",
+        "genres": "Field Recording, Nature Sounds",
+        "descriptors": "relaxing, continuous, oceanic, meditative, tranquil",
+        "averageRating": 4.5,
+        "numberRatings": "8,745",
+        "numberReviews": 133
+    },
+    {
+        "album": "Piano Solos",
+        "artistName": "George Winston",
+        "releaseDate": "1991-05-14",
+        "genres": "New Age, Solo Piano",
+        "descriptors": "peaceful, seasonal, emotional, instrumental, flowing",
+        "averageRating": 4.8,
+        "numberRatings": "15,322",
+        "numberReviews": 210
+    },
+    {
+        "album": "Rainforest",
+        "artistName": "Dan Gibson",
+        "releaseDate": "1993-04-13",
+        "genres": "Nature Sounds, Ambient",
+        "descriptors": "lush, tropical, immersive, relaxing, natural",
+        "averageRating": 4.6,
+        "numberRatings": "11,908",
+        "numberReviews": 187
+    },
+    {
+        "album": "The Planet Sleeps",
+        "artistName": "Various Artists",
+        "releaseDate": "1998-09-22",
+        "genres": "Instrumental, Lullabies, Ambient",
+        "descriptors": "worldly, soothing, instrumental, relaxing, sleep-friendly",
+        "averageRating": 4.7,
+        "numberRatings": "5,342",
+        "numberReviews": 92
+    },
+    {
+        "album": "Watermark",
+        "artistName": "Enya",
+        "releaseDate": "1988-09-19",
+        "genres": "Ambient, New Age, Instrumental",
+        "descriptors": "ethereal, cinematic, flowing, calming, lush",
+        "averageRating": 4.9,
+        "numberRatings": "40,245",
+        "numberReviews": 710
+    },
+    {
+        "album": "Sounds of the Forest",
+        "artistName": "Nature Sound Series",
+        "releaseDate": "2008-01-01",
+        "genres": "Field Recording, Nature Sounds",
+        "descriptors": "forest ambiance, birdsong, peaceful, immersive, natural",
+        "averageRating": 4.4,
+        "numberRatings": "6,764",
+        "numberReviews": 114
+    },
+    {
+        "album": "Spiegel im Spiegel",
+        "artistName": "Arvo Pärt",
+        "releaseDate": "1978-01-01",
+        "genres": "Contemporary Classical, Minimalism",
+        "descriptors": "minimalist, introspective, slow, spacious, instrumental",
+        "averageRating": 4.9,
+        "numberRatings": "17,890",
+        "numberReviews": 266
+    },
+    {
+        "album": "Deep Sleep",
+        "artistName": "Liquid Mind",
+        "releaseDate": "2001-09-18",
+        "genres": "Ambient, New Age, Instrumental",
+        "descriptors": "sleep aid, mellow, ambient, slow, continuous",
+        "averageRating": 4.6,
+        "numberRatings": "12,008",
+        "numberReviews": 178
+    },
+    {
+        "album": "Unknown Pleasures",
+        "artistName": "Joy Division",
+        "releaseDate": "15 June 1979",
+        "genres": "Post-Punk",
+        "descriptors": "sombre, dark, cold, anxious, introspective, lonely, atmospheric, existential, depressive, male vocals",
+        "averageRating": 4.11,
+        "numberRatings": "39,724",
+        "numberReviews": 573
+    },
+    {
+        "album": "Animals",
+        "artistName": "Pink Floyd",
+        "releaseDate": "21 January 1977",
+        "genres": "Progressive Rock, Art Rock",
+        "descriptors": "political, pessimistic, philosophical, sarcastic, concept album, progressive, satirical, male vocals, complex, atmospheric",
+        "averageRating": 4.13,
+        "numberRatings": "36,462",
+        "numberReviews": 695
+    },
+    {
+        "album": "The Queen Is Dead",
+        "artistName": "The Smiths",
+        "releaseDate": "16 June 1986",
+        "genres": "Jangle Pop, Indie Pop",
+        "descriptors": "lonely, melancholic, sarcastic, poetic, melodic, bittersweet, introspective, male vocals, humorous, longing",
+        "averageRating": 4.12,
+        "numberRatings": "35,400",
+        "numberReviews": 530
+    },
+    {
+        "album": "Highway 61 Revisited",
+        "artistName": "Bob Dylan",
+        "releaseDate": "30 August 1965",
+        "genres": "Folk Rock, Singer/Songwriter",
+        "descriptors": "poetic, cryptic, surreal, sarcastic, male vocals, passionate, conscious, rebellious, philosophical, introspective",
+        "averageRating": 4.17,
+        "numberRatings": "26,338",
+        "numberReviews": 604
+    },
+    {
+        "album": "Doolittle",
+        "artistName": "Pixies",
+        "releaseDate": "17 April 1989",
+        "genres": "Alternative Rock, Indie Rock",
+        "descriptors": "energetic, anxious, playful, manic, humorous, male vocals, noisy, raw, rebellious, sarcastic",
+        "averageRating": 4.12,
+        "numberRatings": "34,101",
+        "numberReviews": 548
+    },
+    {
+        "album": "Led Zeppelin [IV]",
+        "artistName": "Led Zeppelin",
+        "releaseDate": "8 November 1971",
+        "genres": "Hard Rock",
+        "descriptors": "fantasy, folklore, male vocals, energetic, passionate, rebellious, rhythmic, melodic, heavy, longing",
+        "averageRating": 4.10,
+        "numberRatings": "35,024",
+        "numberReviews": 873
+    },
+    {
+        "album": "In a Silent Way",
+        "artistName": "Miles Davis",
+        "releaseDate": "30 July 1969",
+        "genres": "Jazz Fusion, Modal Jazz",
+        "descriptors": "instrumental, atmospheric, mellow, mysterious, nocturnal, improvisation, calm, soothing, meditative, hypnotic",
+        "averageRating": 4.21,
+        "numberRatings": "17,084",
+        "numberReviews": 282
+    },
+    {
+        "album": "Low",
+        "artistName": "David Bowie",
+        "releaseDate": "14 January 1977",
+        "genres": "Art Rock",
+        "descriptors": "atmospheric, futuristic, lonely, sombre, cryptic, abstract, male vocals, surreal, melancholic, cold",
+        "averageRating": 4.12,
+        "numberRatings": "29,055",
+        "numberReviews": 518
+    },
+    {
+        "album": "Long Season",
+        "artistName": "Fishmans",
+        "releaseDate": "25 October 1996",
+        "genres": "Dream Pop, Neo-Psychedelia, Progressive Pop, Space Rock",
+        "descriptors": "atmospheric, lush, repetitive, mellow, psychedelic, warm, aquatic, nature, melodic, androgynous vocals",
+        "averageRating": 4.17,
+        "numberRatings": "20,769",
+        "numberReviews": 151
+    },
+    {
+        "album": "Marquee Moon",
+        "artistName": "Television",
+        "releaseDate": "8 February 1977",
+        "genres": "Art Punk, Post-Punk, Art Rock",
+        "descriptors": "male vocals, rhythmic, poetic, cryptic, technical, anxious, introspective, philosophical, existential, urban",
+        "averageRating": 4.13,
+        "numberRatings": "25,789",
+        "numberReviews": 391
+    },
+    {
+        "album": "Dummy",
+        "artistName": "Portishead",
+        "releaseDate": "22 August 1994",
+        "genres": "Trip Hop",
+        "descriptors": "melancholic, mysterious, atmospheric, dark, nocturnal, mellow, introspective, female vocals, sampling, sombre",
+        "averageRating": 4.11,
+        "numberRatings": "30,000",
+        "numberReviews": 398
+    },
+    {
+        "album": "Hounds of Love",
+        "artistName": "Kate Bush",
+        "releaseDate": "16 September 1985",
+        "genres": "Art Pop, Progressive Pop",
+        "descriptors": "female vocals, passionate, love, lush, romantic, ethereal, concept album, poetic, epic, melodic",
+        "averageRating": 4.15,
+        "numberRatings": "22,774",
+        "numberReviews": 266
+    },
+    {
+        "album": "Blonde on Blonde",
+        "artistName": "Bob Dylan",
+        "releaseDate": "20 June 1966",
+        "genres": "Folk Rock, Singer/Songwriter",
+        "descriptors": "poetic, surreal, cryptic, sarcastic, bittersweet, romantic, introspective, male vocals, playful, conscious",
+        "averageRating": 4.15,
+        "numberRatings": "22,207",
+        "numberReviews": 457
+    },
+    {
+        "album": "F\u266fA\u266f\u221e",
+        "artistName": "Godspeed You Black Emperor!",
+        "releaseDate": "14 August 1997",
+        "genres": "Post-Rock",
+        "descriptors": "apocalyptic, instrumental, atmospheric, sombre, dark, ominous, epic, lonely, suspenseful, melancholic",
+        "averageRating": 4.12,
+        "numberRatings": "26,700",
+        "numberReviews": 361
+    },
+    {
+        "album": "The Doors",
+        "artistName": "The Doors",
+        "releaseDate": "4 January 1967",
+        "genres": "Psychedelic Rock",
+        "descriptors": "psychedelic, drugs, poetic, sexual, dark, male vocals, cryptic, hedonistic, mysterious, nocturnal",
+        "averageRating": 4.09,
+        "numberRatings": "30,746",
+        "numberReviews": 563
+    },
+    {
+        "album": "DJ Shadow",
+        "artistName": "DJ Shadow",
+        "releaseDate": "19 November 1996",
+        "genres": "Instrumental Hip Hop, Experimental Hip Hop, Plunderphonics",
+        "descriptors": "sampling, instrumental, atmospheric, urban, mysterious, nocturnal, rhythmic, sombre, hypnotic, eclectic",
+        "averageRating": 4.11,
+        "numberRatings": "26,775",
+        "numberReviews": 410
+    },
+    {
+        "album": "Bitches Brew",
+        "artistName": "Miles Davis",
+        "releaseDate": "30 March 1970",
+        "genres": "Jazz Fusion, Avant-Garde Jazz",
+        "descriptors": "psychedelic, instrumental, improvisation, dense, complex, mysterious, surreal, hypnotic, atmospheric, avant-garde",
+        "averageRating": 4.16,
+        "numberRatings": "19,070",
+        "numberReviews": 321
+    },
+    {
+        "album": "Blood on the Tracks",
+        "artistName": "Bob Dylan",
+        "releaseDate": "20 January 1975",
+        "genres": "Singer/Songwriter, Folk Rock",
+        "descriptors": "breakup, lonely, poetic, introspective, melancholic, love, male vocals, passionate, bittersweet, longing",
+        "averageRating": 4.16,
+        "numberRatings": "19,324",
+        "numberReviews": 425
+    },
+    {
+        "album": "Close to the Edge",
+        "artistName": "Yes",
+        "releaseDate": "8 September 1972",
+        "genres": "Symphonic Prog, Progressive Rock",
+        "descriptors": "epic, uplifting, complex, technical, progressive, fantasy, uncommon time signatures, male vocals, lush, optimistic",
+        "averageRating": 4.13,
+        "numberRatings": "21,728",
+        "numberReviews": 454
+    },
+    {
+        "album": "Souvlaki",
+        "artistName": "Slowdive",
+        "releaseDate": "1 June 1993",
+        "genres": "Dream Pop, Shoegaze",
+        "descriptors": "melancholic, ethereal, mellow, romantic, atmospheric, female vocals, soothing, male vocals, sentimental, bittersweet",
+        "averageRating": 4.09,
+        "numberRatings": "28,685",
+        "numberReviews": 297
+    },
+    {
+        "album": "Master of Reality",
+        "artistName": "Black Sabbath",
+        "releaseDate": "21 July 1971",
+        "genres": "Heavy Metal",
+        "descriptors": "heavy, dark, male vocals, rhythmic, sombre, nocturnal, drugs, alienation, ominous, anthemic",
+        "averageRating": 4.12,
+        "numberRatings": "24,271",
+        "numberReviews": 446
+    },
+    {
+        "album": "Vespertine",
+        "artistName": "Bj\u00f6rk",
+        "releaseDate": "27 August 2001",
+        "genres": "Art Pop, Electronic",
+        "descriptors": "sensual, romantic, winter, sexual, ethereal, atmospheric, lush, introspective, female vocals, soothing",
+        "averageRating": 4.13,
+        "numberRatings": "23,181",
+        "numberReviews": 261
+    },
+    {
+        "album": "Closer",
+        "artistName": "Joy Division",
+        "releaseDate": "18 July 1980",
+        "genres": "Post-Punk",
+        "descriptors": "lonely, sombre, depressive, cold, dark, introspective, atmospheric, anxious, existential, pessimistic",
+        "averageRating": 4.09,
+        "numberRatings": "28,898",
+        "numberReviews": 558
+    },
+    {
+        "album": "The Low End Theory",
+        "artistName": "A Tribe Called Quest",
+        "releaseDate": "24 September 1991",
+        "genres": "Jazz Rap, East Coast Hip Hop, Conscious Hip Hop",
+        "descriptors": "rhythmic, mellow, urban, male vocals, sampling, conscious, boastful, playful, poetic, nocturnal",
+        "averageRating": 4.12,
+        "numberRatings": "24,090",
+        "numberReviews": 290
+    },
+    {
+        "album": "The Glow Pt. 2",
+        "artistName": "The Microphones",
+        "releaseDate": "11 September 2001",
+        "genres": "Indie Folk, Psychedelic Folk, Lo-Fi / Slacker Rock",
+        "descriptors": "lonely, lo-fi, melancholic, nature, atmospheric, introspective, forest, male vocals, noisy, existential",
+        "averageRating": 4.11,
+        "numberRatings": "23,997",
+        "numberReviews": 275
+    },
+    {
+        "album": "Are You Experienced",
+        "artistName": "The Jimi Hendrix Experience",
+        "releaseDate": "12 May 1967",
+        "genres": "Blues Rock, Psychedelic Rock, Acid Rock",
+        "descriptors": "psychedelic, energetic, sexual, drugs, raw, male vocals, hedonistic, heavy, passionate, hypnotic",
+        "averageRating": 4.12,
+        "numberRatings": "23,265",
+        "numberReviews": 512
+    },
+    {
+        "album": "Electric Ladyland",
+        "artistName": "The Jimi Hendrix Experience",
+        "releaseDate": "25 October 1968",
+        "genres": "Blues Rock, Psychedelic Rock, Acid Rock",
+        "descriptors": "psychedelic, drugs, surreal, energetic, sexual, sensual, passionate, raw, male vocals, summer",
+        "averageRating": 4.14,
+        "numberRatings": "19,551",
+        "numberReviews": 435
+    },
+    {
+        "album": "Songs in the Key of Life",
+        "artistName": "Stevie Wonder",
+        "releaseDate": "28 September 1976",
+        "genres": "Soul",
+        "descriptors": "uplifting, male vocals, passionate, warm, optimistic, philosophical, happy, melodic, romantic, conscious",
+        "averageRating": 4.18,
+        "numberRatings": "12,151",
+        "numberReviews": 242
+    },
+    {
+        "album": "Atrocity Exhibition",
+        "artistName": "Danny Brown",
+        "releaseDate": "30 September 2016",
+        "genres": "Experimental Hip Hop, Hardcore Hip Hop",
+        "descriptors": "drugs, dark, manic, abstract, psychedelic, male vocals, chaotic, eclectic, sexual, anxious",
+        "averageRating": 4.08,
+        "numberRatings": "25,353",
+        "numberReviews": 193
+    },
+    {
+        "album": "Songs of Leonard Cohen",
+        "artistName": "Leonard Cohen",
+        "releaseDate": "27 December 1967",
+        "genres": "Contemporary Folk, Singer/Songwriter",
+        "descriptors": "poetic, sombre, acoustic, melancholic, introspective, philosophical, male vocals, love, serious, mysterious",
+        "averageRating": 4.14,
+        "numberRatings": "17,166",
+        "numberReviews": 289
+    },
+    {
+        "album": "The Money Store",
+        "artistName": "Death Grips",
+        "releaseDate": "24 April 2012",
+        "genres": "Industrial Hip Hop, Hardcore Hip Hop, Experimental Hip Hop",
+        "descriptors": "aggressive, manic, energetic, angry, noisy, nihilistic, crime, raw, drugs, misanthropic",
+        "averageRating": 4.02,
+        "numberRatings": "36,403",
+        "numberReviews": 311
+    },
+    {
+        "album": "Illinois",
+        "artistName": "Sufjan Stevens",
+        "releaseDate": "5 July 2005",
+        "genres": "Chamber Pop, Singer/Songwriter",
+        "descriptors": "lush, melodic, Christian, concept album, warm, male vocals, bittersweet, history, sentimental, poetic",
+        "averageRating": 4.07,
+        "numberRatings": "27,355",
+        "numberReviews": 403
+    },
+    {
+        "album": "Music to Code By",
+        "artistName": "Carl Franklin",
+        "releaseDate": "2014-11-01",
+        "genres": "Ambient, Productivity, Instrumental",
+        "descriptors": "focus-enhancing, mellow, instrumental, background, relaxing, code-friendly, uninterrupted, minimal",
+        "averageRating": 4.8,
+        "numberRatings": "4,203",
+        "numberReviews": 87
+    },
+    {
+        "album": "Homogenic",
+        "artistName": "Bj\u00f6rk",
+        "releaseDate": "22 September 1997",
+        "genres": "Art Pop, Electronic",
+        "descriptors": "cold, passionate, ethereal, lush, female vocals, atmospheric, introspective, anxious, winter, romantic",
+        "averageRating": 4.07,
+        "numberRatings": "27,655",
+        "numberReviews": 310
+    },
+    {
+        "album": "Soundtracks for the Blind",
+        "artistName": "Swans",
+        "releaseDate": "22 October 1996",
+        "genres": "Experimental Rock, Post-Rock, Experimental",
+        "descriptors": "sombre, atmospheric, ominous, dark, misanthropic, lonely, mysterious, disturbing, depressive, suspenseful",
+        "averageRating": 4.11,
+        "numberRatings": "17,440",
+        "numberReviews": 220
+    },
+    {
+        "album": "Either / Or",
+        "artistName": "Elliott Smith",
+        "releaseDate": "25 February 1997",
+        "genres": "Singer/Songwriter, Indie Folk",
+        "descriptors": "melancholic, mellow, acoustic, depressive, introspective, lonely, melodic, male vocals, bittersweet, sombre",
+        "averageRating": 4.10,
+        "numberRatings": "22,173",
+        "numberReviews": 275
+    },
+    {
+        "album": "Laughing Stock",
+        "artistName": "Talk Talk",
+        "releaseDate": "19 November 1991",
+        "genres": "Post-Rock",
+        "descriptors": "atmospheric, sombre, religious, spiritual, introspective, improvisation, sparse, melancholic, autumn, male vocals",
+        "averageRating": 4.11,
+        "numberRatings": "18,467",
+        "numberReviews": 287
+    },
+    {
+        "album": "The College Dropout",
+        "artistName": "Kanye West",
+        "releaseDate": "10 February 2004",
+        "genres": "Chipmunk Soul, Pop Rap",
+        "descriptors": "humorous, playful, male vocals, conscious, passionate, sampling, boastful, satirical, warm, sarcastic",
+        "averageRating": 4.03,
+        "numberRatings": "34,739",
+        "numberReviews": 272
+    },
+    {
+        "album": "Daydream Nation",
+        "artistName": "Sonic Youth",
+        "releaseDate": "18 October 1988",
+        "genres": "Noise Rock, Alternative Rock",
+        "descriptors": "energetic, anxious, raw, rebellious, noisy, urban, male vocals, female vocals, dissonant, apathetic",
+        "averageRating": 4.05,
+        "numberRatings": "27,963",
+        "numberReviews": 499
+    },
+    {
+        "album": "Liquid Swords",
+        "artistName": "Genius/GZA",
+        "releaseDate": "7 November 1995",
+        "genres": "East Coast Hip Hop, Hardcore Hip Hop, Boom Bap",
+        "descriptors": "dark, crime, urban, atmospheric, philosophical, cold, raw, rhythmic, sampling, male vocals",
+        "averageRating": 4.11,
+        "numberRatings": "17,308",
+        "numberReviews": 329
+    },
+    {
+        "album": "Blonde",
+        "artistName": "Frank Ocean",
+        "releaseDate": "20 August 2016",
+        "genres": "Alternative R&B, Art Pop, Neo-Soul",
+        "descriptors": "introspective, LGBT, bittersweet, mellow, sexual, atmospheric, drugs, sensual, male vocals, romantic",
+        "averageRating": 4.04,
+        "numberRatings": "29,807",
+        "numberReviews": 289
+    },
+    {
+        "album": "The Velvet Underground",
+        "artistName": "The Velvet Underground",
+        "releaseDate": "March 1969",
+        "genres": "Pop Rock",
+        "descriptors": "mellow, melancholic, bittersweet, melodic, introspective, male vocals, nocturnal, soft, alienation, love",
+        "averageRating": 4.09,
+        "numberRatings": "22,144",
+        "numberReviews": 399
+    },
+    {
+        "album": "Rubber Soul",
+        "artistName": "The Beatles",
+        "releaseDate": "3 December 1965",
+        "genres": "Pop Rock",
+        "descriptors": "melodic, love, male vocals, bittersweet, romantic, mellow, autumn, melancholic, eclectic, happy",
+        "averageRating": 4.03,
+        "numberRatings": "33,508",
+        "numberReviews": 721
+    },
+    {
+        "album": "What's Going On",
+        "artistName": "Marvin Gaye",
+        "releaseDate": "21 May 1971",
+        "genres": "Soul",
+        "descriptors": "political, passionate, conscious, mellow, male vocals, lush, melodic, spiritual, warm, Christian",
+        "averageRating": 4.11,
+        "numberRatings": "18,776",
+        "numberReviews": 341
+    },
+    {
+        "album": "\u2605 [Blackstar]",
+        "artistName": "David Bowie",
+        "releaseDate": "8 January 2016",
+        "genres": "Art Rock",
+        "descriptors": "dark, death, introspective, poetic, male vocals, melancholic, concept album, sad, funereal, anxious",
+        "averageRating": 4.06,
+        "numberRatings": "25,408",
+        "numberReviews": 297
+    },
+    {
+        "album": "Ride the Lightning",
+        "artistName": "Metallica",
+        "releaseDate": "30 July 1984",
+        "genres": "Thrash Metal",
+        "descriptors": "heavy, energetic, aggressive, male vocals, dark, death, angry, apocalyptic, melodic, cold",
+        "averageRating": 4.05,
+        "numberRatings": "27,615",
+        "numberReviews": 546
+    },
+    {
+        "album": "Station to Station",
+        "artistName": "David Bowie",
+        "releaseDate": "23 January 1976",
+        "genres": "Art Rock",
+        "descriptors": "drugs, anxious, lonely, introspective, male vocals, cryptic, alienation, melodic, passionate, nocturnal",
+        "averageRating": 4.09,
+        "numberRatings": "21,019",
+        "numberReviews": 358
+    },
+    {
+        "album": "Black Sabbath",
+        "artistName": "Black Sabbath",
+        "releaseDate": "13 February 1970",
+        "genres": "Heavy Metal, Hard Rock",
+        "descriptors": "occult, dark, fantasy, ominous, sombre, heavy, male vocals, psychedelic, funereal, mysterious",
+        "averageRating": 4.06,
+        "numberRatings": "24,945",
+        "numberReviews": 559
+    },
+    {
+        "album": "Magical Mystery Tour",
+        "artistName": "The Beatles",
+        "releaseDate": "27 November 1967",
+        "genres": "Psychedelic Pop, Pop Rock",
+        "descriptors": "psychedelic, melodic, playful, surreal, male vocals, lush, summer, quirky, bittersweet, uplifting",
+        "averageRating": 4.06,
+        "numberRatings": "27,318",
+        "numberReviews": 560
+    },
+    {
+        "album": "Tago Mago",
+        "artistName": "Can",
+        "releaseDate": "August 1971",
+        "genres": "Krautrock, Psychedelic Rock, Experimental Rock",
+        "descriptors": "psychedelic, surreal, improvisation, hypnotic, avant-garde, rhythmic, cryptic, abstract, complex, repetitive",
+        "averageRating": 4.07,
+        "numberRatings": "22,071",
+        "numberReviews": 479
+    },
+    {
+        "album": "Bringing It All Back Home",
+        "artistName": "Bob Dylan",
+        "releaseDate": "22 March 1965",
+        "genres": "Folk Rock, Singer/Songwriter, Contemporary Folk",
+        "descriptors": "poetic, sarcastic, satirical, male vocals, surreal, conscious, political, cryptic, protest, humorous",
+        "averageRating": 4.11,
+        "numberRatings": "16,718",
+        "numberReviews": 386
+    },
+    {
+        "album": "Heaven or Las Vegas",
+        "artistName": "Cocteau Twins",
+        "releaseDate": "17 September 1990",
+        "genres": "Dream Pop",
+        "descriptors": "ethereal, atmospheric, warm, female vocals, lush, soothing, romantic, cryptic, sensual, mellow",
+        "averageRating": 4.08,
+        "numberRatings": "22,107",
+        "numberReviews": 205
+    },
+    {
+        "album": "After the Gold Rush",
+        "artistName": "Neil Young",
+        "releaseDate": "19 September 1970",
+        "genres": "Folk Rock, Singer/Songwriter, Country Rock",
+        "descriptors": "introspective, melancholic, mellow, lonely, poetic, pastoral, bittersweet, male vocals, calm, autumn",
+        "averageRating": 4.09,
+        "numberRatings": "18,452",
+        "numberReviews": 380
+    },
+    {
+        "album": "Aquemini",
+        "artistName": "OutKast",
+        "releaseDate": "29 September 1998",
+        "genres": "Southern Hip Hop, Conscious Hip Hop",
+        "descriptors": "conscious, male vocals, lush, boastful, urban, mellow, introspective, warm, rhythmic, uplifting",
+        "averageRating": 4.11,
+        "numberRatings": "16,064",
+        "numberReviews": 158
+    },
+    {
+        "album": "Future Days",
+        "artistName": "Can",
+        "releaseDate": "September 1973",
+        "genres": "Krautrock",
+        "descriptors": "warm, hypnotic, atmospheric, rhythmic, tropical, mellow, summer, psychedelic, improvisation, aquatic",
+        "averageRating": 4.11,
+        "numberRatings": "16,295",
+        "numberReviews": 248
+    },
+    {
+        "album": "\u00c1g\u00e6tis byrjun",
+        "artistName": "Sigur R\u00f3s",
+        "releaseDate": "12 June 1999",
+        "genres": "Post-Rock",
+        "descriptors": "ethereal, atmospheric, soothing, melancholic, mellow, winter, calm, lush, bittersweet, androgynous vocals",
+        "averageRating": 4.04,
+        "numberRatings": "26,732",
+        "numberReviews": 496
+    },
+    {
+        "album": "Fun House",
+        "artistName": "The Stooges",
+        "releaseDate": "September 1970",
+        "genres": "Proto-Punk, Garage Rock, Hard Rock",
+        "descriptors": "energetic, raw, sexual, manic, rebellious, hedonistic, aggressive, noisy, drugs, nihilistic",
+        "averageRating": 4.09,
+        "numberRatings": "17,795",
+        "numberReviews": 451
+    },
+    {
+        "album": "Hunky Dory",
+        "artistName": "David Bowie",
+        "releaseDate": "17 December 1971",
+        "genres": "Glam Rock, Pop Rock, Art Rock",
+        "descriptors": "playful, melodic, quirky, male vocals, warm, lush, melancholic, sarcastic, introspective, humorous",
+        "averageRating": 4.04,
+        "numberRatings": "27,512",
+        "numberReviews": 510
+    },
+    {
+        "album": "Rain Dogs",
+        "artistName": "Tom Waits",
+        "releaseDate": "30 September 1985",
+        "genres": "Singer/Songwriter, Experimental Rock",
+        "descriptors": "poetic, eclectic, urban, surreal, alcohol, nocturnal, male vocals, crime, mysterious, dark",
+        "averageRating": 4.07,
+        "numberRatings": "19,301",
+        "numberReviews": 354
+    },
+    {
+        "album": "London Calling",
+        "artistName": "The Clash",
+        "releaseDate": "14 December 1979",
+        "genres": "New Wave, Punk Rock",
+        "descriptors": "political, energetic, rebellious, eclectic, male vocals, rhythmic, passionate, conscious, urban, anthemic",
+        "averageRating": 4.01,
+        "numberRatings": "28,704",
+        "numberReviews": 747
+    },
+    {
+        "album": "Selected Ambient Works 85-92",
+        "artistName": "Aphex Twin",
+        "releaseDate": "9 November 1992",
+        "genres": "Ambient Techno, IDM",
+        "descriptors": "atmospheric, ethereal, futuristic, instrumental, hypnotic, soothing, mellow, rhythmic, calm, mysterious",
+        "averageRating": 4.03,
+        "numberRatings": "27,921",
+        "numberReviews": 300
+    },
+    {
+        "album": "Midnight Marauders",
+        "artistName": "A Tribe Called Quest",
+        "releaseDate": "9 November 1993",
+        "genres": "East Coast Hip Hop, Jazz Rap, Boom Bap",
+        "descriptors": "rhythmic, urban, nocturnal, mellow, playful, male vocals, sampling, boastful, poetic, sarcastic",
+        "averageRating": 4.10,
+        "numberRatings": "15,949",
+        "numberReviews": 172
+    },
+    {
+        "album": "Funeral",
+        "artistName": "Arcade Fire",
+        "releaseDate": "14 September 2004",
+        "genres": "Indie Rock, Chamber Pop",
+        "descriptors": "passionate, death, melancholic, bittersweet, melodic, autumn, uplifting, poetic, romantic, male vocals",
+        "averageRating": 3.97,
+        "numberRatings": "37,023",
+        "numberReviews": 837
+    },
+    {
+        "album": "Master of Puppets",
+        "artistName": "Metallica",
+        "releaseDate": "3 March 1986",
+        "genres": "Thrash Metal",
+        "descriptors": "aggressive, heavy, angry, energetic, male vocals, rebellious, political, serious, uncommon time signatures, progressive",
+        "averageRating": 4.00,
+        "numberRatings": "30,780",
+        "numberReviews": 730
+    },
+    {
+        "album": "Carrie & Lowell",
+        "artistName": "Sufjan Stevens",
+        "releaseDate": "31 March 2015",
+        "genres": "Indie Folk, Singer/Songwriter",
+        "descriptors": "death, melancholic, sad, acoustic, peaceful, poetic, soft, introspective, male vocals, melodic",
+        "averageRating": 4.04,
+        "numberRatings": "21,983",
+        "numberReviews": 214
+    },
+    {
+        "album": "Purple Rain",
+        "artistName": "Prince and The Revolution",
+        "releaseDate": "25 June 1984",
+        "genres": "Pop Rock, Film Soundtrack, Synth Funk",
+        "descriptors": "playful, sexual, energetic, sensual, melodic, love, romantic, rhythmic, male vocals, passionate",
+        "averageRating": 4.07,
+        "numberRatings": "16,754",
+        "numberReviews": 313
+    },
+    {
+        "album": "White Light / White Heat",
+        "artistName": "The Velvet Underground",
+        "releaseDate": "30 January 1968",
+        "genres": "Experimental Rock, Noise Rock, Proto-Punk",
+        "descriptors": "drugs, noisy, sexual, raw, lo-fi, dissonant, energetic, chaotic, male vocals, hedonistic",
+        "averageRating": 4.03,
+        "numberRatings": "24,274",
+        "numberReviews": 503
+    },
+    {
+        "album": "Innervisions",
+        "artistName": "Stevie Wonder",
+        "releaseDate": "3 August 1973",
+        "genres": "Soul",
+        "descriptors": "political, male vocals, passionate, romantic, warm, melodic, soft, urban, conscious, religious",
+        "averageRating": 4.11,
+        "numberRatings": "12,323",
+        "numberReviews": 242
+    },
+    {
+        "album": "Giant Steps",
+        "artistName": "John Coltrane",
+        "releaseDate": "27 January 1960",
+        "genres": "Hard Bop",
+        "descriptors": "instrumental, energetic, technical, improvisation, acoustic, playful, rhythmic, complex, uncommon time signatures, passionate",
+        "averageRating": 4.10,
+        "numberRatings": "13,880",
+        "numberReviews": 192
+    },
+    {
+        "album": "Donuts",
+        "artistName": "J Dilla",
+        "releaseDate": "7 February 2006",
+        "genres": "Instrumental Hip Hop",
+        "descriptors": "sampling, instrumental, eclectic, playful, bittersweet, repetitive, rhythmic, urban, warm, longing",
+        "averageRating": 4.06,
+        "numberRatings": "18,830",
+        "numberReviews": 260
+    }
+]

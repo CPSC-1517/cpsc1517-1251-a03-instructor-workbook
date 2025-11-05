@@ -1,0 +1,28 @@
+﻿@page "/albums/query"
+@using WestWindBlazorApp.Models
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>Album Query</h3>
+
+@code {
+    private List<TopAlbumsModel>? _topAlbums;
+    private string? feedbackMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // return base.OnInitializedAsync();
+        try 
+        {
+            if (Http.BaseAddress == null)
+            {
+                Http.BaseAddress = new Uri(NavManager.BaseUri);
+            }
+            _topAlbums = await Http.GetFromJsonAsync<List<TopAlbumsModel>>("/data/top_albums.json") ?? new();
+        }
+        catch(Exception ex)
+        {
+            feedbackMessage = ex.Message;
+        }
+    }
+}
