@@ -95,7 +95,7 @@ else if (!_isLoading && string.IsNullOrWhiteSpace(_infoMessage) && _errors.Count
 }
 @code {
     // Local State fields
-    private readonly List<BookNoDataAnnotations> _books = new();
+    private readonly List<Book> _books = new();
     private readonly List<string> _errors = new();
     private string? _infoMessage;
     private bool _isLoading;
@@ -148,7 +148,7 @@ else if (!_isLoading && string.IsNullOrWhiteSpace(_infoMessage) && _errors.Count
             {
                 try
                 {
-                    var currentBook = BookNoDataAnnotations.Parse(currentLine);
+                    var currentBook = Book.Parse(currentLine);
                     _books.Add(currentBook);
                 }
                 catch (ArgumentNullException ex)

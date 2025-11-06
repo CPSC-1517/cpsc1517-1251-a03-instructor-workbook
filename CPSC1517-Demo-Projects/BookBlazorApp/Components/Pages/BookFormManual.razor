@@ -1,0 +1,166 @@
+﻿@page "/book-form-manual"
+@using BookBlazorApp.ViewModels
+@using Models
+@inject IWebHostEnvironment WebHostEnvironment
+@inject NavigationManager NavManager
+@inject IJSRuntime JS
+
+<PageTitle>Book Entry – Manual Validation</PageTitle>
+
+<h3>Book Entry – Manual Validation</h3>
+
+@if (!string.IsNullOrWhiteSpace(feedbackMessage))
+{
+    <div class="alert alert-info">@feedbackMessage</div>
+}
+
+@if (errorMessages.Count > 0)
+{
+    <div class="alert alert-danger">
+        <p>Please fix the following issues:</p>
+        <ul>
+            @foreach (var currentError in errorMessages)
+            {
+                <li>@currentError</li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="mb-3">
+    <label for="title" class="form-label">Title:</label>
+    <input id="title" class="form-control" 
+            @bind="Title" />
+</div>
+
+<div class="mb-3">
+    <label for="pages" class="form-label">Pages:</label>
+    <input id="pages" class="form-control" type="number" 
+            @bind="Pages" />
+</div>
+
+<div class="mb-3">
+    <label for="publishdate" class="form-label">Publish Date</label>
+    <input id="publishdate" class="form-control" type="date" 
+            @bind="PublishDate" />
+</div>
+
+<div class="mb-3">
+    <label for="genre" class="form-label">Genre:</label>
+    <select id="genre" class="form-control" 
+            @bind="Genre">
+        @foreach (BookGenre genre in Enum.GetValues<BookGenre>().OrderBy(b => b.ToString()))
+        {
+            <option value="@genre">@genre</option>
+        }
+    </select>
+</div>
+
+<div class="mb-3 form-check">
+    <input id="instock" type="checkbox" class="form-check-input" 
+            @bind="InStock" />
+    <label class="form-check-label" for="instock">In Stock</label>
+</div>
+
+<button type="button" class="btn btn-primary" @onclick="AddBook">
+    Add Book
+</button>
+<button type="button" class="btn btn-secondary" @onclick="ClearForm">
+    Clear
+</button>
+<button type="button" class="btn btn-info" @onclick="NavigateToBookListing">
+    Book Listing
+</button>
+
+
+@code {
+    private string? feedbackMessage;
+    private List<string> errorMessages = new();
+
+    private string? Title { get; set; }
+    private int Pages { get; set; }
+    private DateOnly PublishDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+    private BookGenre Genre { get; set; } = BookGenre.Fantasy;
+    private bool InStock { get; set; }
+
+    protected override void OnInitialized()
+    {
+    }
+
+    private void AddBook()
+    {
+        errorMessages.Clear();
+        feedbackMessage = null;
+
+        // Title: required, 2–50
+        if (string.IsNullOrWhiteSpace(Title))
+            errorMessages.Add("Title is required");
+        else if (Title.Length < 2 || Title.Length > 50)
+            errorMessages.Add("Title must be 2–50 characters");
+
+        // Pages: >= 2
+        if (Pages < 2)
+            errorMessages.Add("Pages must be ≥ 2");
+
+        // PublishDate: past
+        if (PublishDate > DateOnly.FromDateTime(DateTime.Now))
+            errorMessages.Add("PublishDate must to be in the past or present.");
+
+        if (errorMessages.Count == 0)
+        {
+            try
+            {
+                string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
+                string csvPath = Path.Combine(dataFolder, "books.csv");
+                Book bookModel = new Book(Title, Pages, PublishDate, Genre, InStock);
+                File.AppendAllText(csvPath, bookModel.ToString() + Environment.NewLine);
+                feedbackMessage = $"Successfully saved info to {csvPath}";
+
+            }
+            catch (Exception ex)
+            {
+                feedbackMessage = $"Failed to save file with exception {ex.Message}";
+            }
+        }
+
+    }
+
+    private async void ClearForm()
+    {
+        // feedbackMessage = "ClearForm button clicked";
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to clear this form and lose all changes??");
+        if (confirmed)
+        {
+            Title = "";
+            Pages = 0;
+            PublishDate = DateOnly.FromDateTime(DateTime.Today);
+            Genre = BookGenre.Fantasy;
+            InStock = false;
+            feedbackMessage = "Form cleared.";
+            errorMessages.Clear();
+        }
+        else
+        {
+            feedbackMessage = "Clear form canceled.";
+        }
+        StateHasChanged();
+    }
+
+    private async void NavigateToBookListing()
+    {
+        // feedbackMessage = "Book Listing button clicked";
+        bool confirmed = await JS.InvokeAsync<bool>(
+            "confirm",
+            "Are you sure you want to navigate to the book listing page and lose all changes?");
+        if (confirmed)
+        {
+            NavManager.NavigateTo("/books");
+        }
+        else
+        {
+            feedbackMessage = "Report navigation canceled.";
+            StateHasChanged();
+        }
+    }
+    
+}

@@ -2,7 +2,7 @@
 
 namespace BookBlazorApp.ViewModels
 {
-    public sealed class BookEntryForm
+    public sealed class BookFormModel
     {
         public string? Title { get; set; }
         public int Pages { get; set; }
@@ -10,14 +10,14 @@ namespace BookBlazorApp.ViewModels
         public BookGenre Genre { get; set; } = BookGenre.Fantasy;
         public bool InStock { get; set; }
 
-        public static BookNoDataAnnotations ToDomainModel(BookEntryForm bookForm)
+        public static Book ToDomainModel(BookFormModel form)
         {
-            return new BookNoDataAnnotations(
-                bookForm.Title!,
-                bookForm.Pages,
-                bookForm.PublishDate,
-                bookForm.Genre,
-                bookForm.InStock);
+            return new Book(
+                form.Title!,
+                form.Pages,
+                form.PublishDate,
+                form.Genre,
+                form.InStock);
         }
     }
 }

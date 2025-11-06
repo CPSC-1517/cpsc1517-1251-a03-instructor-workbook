@@ -1,21 +1,31 @@
-﻿@page "/book/entry1"
+﻿@page "/book-form-editcontext"
 @using BookBlazorApp.ViewModels
 @using Models
 @inject IWebHostEnvironment WebHostEnvironment
 @inject NavigationManager NavManager
 @inject IJSRuntime JS
 
-<h3>BookEntryWithoutDataAnnotations</h3>
+<PageTitle>Book Entry – Built-in Blazor Validation</PageTitle>
+
+<h3>Book Entry - Built-in Blazor Validation</h3>
 
 @if (!string.IsNullOrWhiteSpace(feedbackMessage))
 {
-    <div class="alert alert-info">@feedbackMessage</div>
+    <div class="alert alert-info">
+        @feedbackMessage
+    </div>
 }
 
 @* Provide EditContext to ValidationSummary/ValidationMessage without EditForm *@
 <CascadingValue Value="editContext">
     <!-- Summary of all messages we add to the store -->
-    <ValidationSummary />
+    @if (editContext.GetValidationMessages().Any())
+    {
+        <div class="alert alert-danger">
+            <p>Please fix the following issues:</p>
+            <ValidationSummary />
+        </div>
+    }
 
     <div class="mb-3">
         <label for="title" class="form-label">Title:</label>
@@ -62,7 +72,6 @@
         <label class="form-check-label" for="instock">In Stock</label>
     </div>
 
-    <!-- Not a submit button; just a regular click -->
     <button type="button" class="btn btn-primary" @onclick="AddBook">
         Add Book
     </button>
@@ -76,9 +85,9 @@
 
 @code {
     private string? feedbackMessage;
-    // Model (no data annotations)
-    private BookEntryForm bookForm = new();
-    // Manual validation infrastructure
+    
+    // Manual validation with EditContext
+    private BookFormModel bookForm = new();
     private EditContext editContext = default!;
     private ValidationMessageStore? messageStore;
 
@@ -107,21 +116,18 @@
         if (bookForm.PublishDate > DateOnly.FromDateTime(DateTime.Now))
             messageStore!.Add(() => bookForm.PublishDate, "PublishDate must to be in the past or present.");
 
-        // If no messages, persist and reset
+        // If no errors then save data to csv file
         if (!editContext.GetValidationMessages().Any())
         {
             try
             {
                 string dataFolder = Path.Combine(WebHostEnvironment.ContentRootPath, "Data");
-                Directory.CreateDirectory(dataFolder);
 
                 string csvPath = Path.Combine(dataFolder, "books.csv");
-                BookNoDataAnnotations bookModel = BookEntryForm.ToDomainModel(bookForm);
-                File.AppendAllText(csvPath, bookModel.ToString() + Environment.NewLine);
+                Book book = BookFormModel.ToDomainModel(bookForm);
+                File.AppendAllText(csvPath, book.ToString() + Environment.NewLine);
                 feedbackMessage = $"Successfully saved info to {csvPath}";
 
-                bookForm = new();
-                editContext = new EditContext(bookForm);
             }
             catch (Exception ex)
             {
@@ -129,10 +135,7 @@
             }
             StateHasChanged();
         }
-        else
-        {
-            feedbackMessage = "Fix the validation issues first.";
-        }
+       
     }
 
     private async void ClearForm()

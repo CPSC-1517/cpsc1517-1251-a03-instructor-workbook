@@ -1,6 +1,6 @@
 ﻿namespace BookBlazorApp.Models
 {
-    public class BookNoDataAnnotations
+    public class Book
     {
         public string Title { get; set; }
         public int Pages { get; set; }
@@ -8,8 +8,12 @@
         public BookGenre Genre { get; set; } = BookGenre.Fantasy;
         public bool InStock { get; set; }
 
-        public BookNoDataAnnotations(string title, int pages, 
-            DateOnly publishDate, BookGenre genre, bool inStock)
+        public Book(
+            string title, 
+            int pages, 
+            DateOnly publishDate, 
+            BookGenre genre, 
+            bool inStock)
         {
             if (string.IsNullOrWhiteSpace(title) || title.Length is < 2 or > 50)
             {
@@ -37,7 +41,7 @@
             return $"{Title},{Pages},{PublishDate},{Genre},{InStock}";
         }
 
-        public static BookNoDataAnnotations Parse(string csvLine)
+        public static Book Parse(string csvLine)
         {
             if (string.IsNullOrWhiteSpace(csvLine))
             {
@@ -56,7 +60,7 @@
             BookGenre genre = Enum.Parse<BookGenre>(fields[3]);
             bool inStock = bool.Parse(fields[4]);
             // Return an BookNoDataAnnotations instance with all the values
-            return new BookNoDataAnnotations(title, pages, publishDate, genre, inStock);
+            return new Book(title, pages, publishDate, genre, inStock);
         }
     }
 }
