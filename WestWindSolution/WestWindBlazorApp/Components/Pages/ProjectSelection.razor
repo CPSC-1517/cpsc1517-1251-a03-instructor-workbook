@@ -1,0 +1,61 @@
+﻿@page "/project-select"
+<h3>Project Selection</h3>
+
+<textarea rows="20" cols="15" value="@availableStudents">
+
+</textarea>
+
+<button @onclick="PickRandomStudent">Pick Random Student</button>
+
+<textarea rows="20" cols="15">
+    @pickedStudents
+</textarea>
+
+@code {
+    private string[] studentsInClass = [
+        "Ali A",
+        // "Ayaydeep SB",
+        // "Robert C",
+        // "Crisitan E",
+        // "Daniel H",
+        // "Azie I",
+        // "Kamram M",
+        // "Hushly P",
+        "Nilupul P",
+        // "Shawn B",
+        // "Jan V",
+        // "Oscar V",
+        // "Nattapong W",
+        // "Manraj SW"
+    ];
+    private string? availableStudents;
+    private string pickedStudents = "";
+
+    private void PickRandomStudent()
+    {
+        string[] availableStudentArray = availableStudents.Split("\n");
+        int randomIndex = Random.Shared.Next(0, availableStudentArray.Length);
+        pickedStudents += availableStudentArray[randomIndex] + "\n";
+        availableStudents = "";
+        for(int index = 0; index < availableStudentArray.Length; index++)
+        {
+            if (index != randomIndex)
+            {
+                availableStudents += availableStudentArray[index] + "\n";
+            }
+        }
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        // base.OnInitialized();
+        Array.Sort(studentsInClass);
+        availableStudents = "";
+        foreach(var currentStudent in studentsInClass)
+        {
+            availableStudents += currentStudent + "\n";
+        }
+        StateHasChanged();
+    }
+}
