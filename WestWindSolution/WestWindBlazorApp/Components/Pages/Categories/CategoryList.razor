@@ -1,0 +1,55 @@
+﻿@page "/westwind/categories"
+@using WestWindSystem.BLL;
+@using WestWindSystem.Entities;
+@inject CategoryServices CurrentCategoryServices
+
+<h3>Category List</h3>
+
+@if (!string.IsNullOrWhiteSpace(feedbackMessage))
+{
+    @feedbackMessage
+}
+
+@if(categories.Count == 0)
+{
+    <p>There are no data to display</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var currentCategory in categories)
+            {
+                <tr>
+                    <td>@currentCategory.CategoryID</td>
+                    <td>@currentCategory.CategoryName</td>
+                    <td>@currentCategory.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Category> categories = new();
+    private string? feedbackMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try 
+        {
+            categories = await CurrentCategoryServices.Category_GetAllAsync();
+        } 
+        catch(Exception ex)
+        {
+            feedbackMessage = $"Error fetching categories: {ex.Message}";    
+        }
+    }
+}

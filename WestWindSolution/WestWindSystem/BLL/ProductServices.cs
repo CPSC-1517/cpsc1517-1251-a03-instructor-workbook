@@ -18,7 +18,7 @@ namespace WestWindSystem.BLL
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<List<Product>> Product_GetByCategoryID(int categoryID)
+        public async Task<List<Product>> Product_GetByCategoryIDAsync(int categoryID)
         {
             await using var context = await _dbContextFactory.CreateDbContextAsync();
             return await context.Products

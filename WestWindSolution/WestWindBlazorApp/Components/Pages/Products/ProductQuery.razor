@@ -1,0 +1,89 @@
+﻿@page "/westwind/products"
+@using WestWindSystem.BLL
+@using WestWindSystem.Entities
+@inject CategoryServices CurrentCategoryServices
+@inject ProductServices CurrentProductServices
+
+<PageTitle>Product Query</PageTitle>
+
+<h3>Product Query</h3>
+
+<div class="form-group">
+    <label for="category" class="form-label">Category:</label>
+    <InputSelect @bind-Value="selectedCategoryID" id="category" class="form-select">
+        <option value="0" >select a category</option>
+        @foreach(var currentCategory in categories)
+        {
+            <option value="@currentCategory.CategoryID" >
+                @currentCategory.CategoryName
+            </option>
+        }
+    </InputSelect>
+</div>
+<button class="btn btn-info" @onclick="FetchProductsByCategory">Fetch Products</button>
+<button class="btn btn-secondary" @onclick="ClearQueryResults">Clear Results</button>
+
+@if (categoryProducts?.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Supplier Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var currentProduct in categoryProducts)
+            {
+                <tr>
+                    <td>@currentProduct.ProductID</td>
+                    <td>@currentProduct.ProductName</td>
+                    <td>@currentProduct.UnitPrice</td>
+                    <td>@currentProduct.Supplier.CompanyName</td>
+                </tr>   
+            }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    private List<Category> categories = new();
+    private string? feedbackMessage;
+    private int selectedCategoryID = 0;
+    private List<Product>? categoryProducts;
+
+
+    private void ClearQueryResults()
+    {
+        categoryProducts = null;
+        selectedCategoryID = 0;
+    }
+
+    private async Task FetchProductsByCategory()
+    {
+        try
+        {
+            categoryProducts = await CurrentProductServices.Product_GetByCategoryIDAsync(selectedCategoryID);
+        }
+        catch(Exception ex)
+        {
+            feedbackMessage = $"Error fetching products by categoryID {selectedCategoryID}";
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            categories = await CurrentCategoryServices.Category_GetAllAsync();
+        }
+        catch (Exception ex)
+        {
+            feedbackMessage = $"Error fetching categories: {ex.Message}";
+        }
+    }
+
+}
