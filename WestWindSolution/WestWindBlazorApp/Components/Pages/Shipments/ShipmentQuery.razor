@@ -10,7 +10,43 @@ you will need to add a using statement-->
 @using WestWindSystem.BLL;
 @using WestWindSystem.Entities;
 
-<h3>ShipmentQuery</h3>
+<h3>Shipment Query</h3>
+
+@if (!string.IsNullOrWhiteSpace(infoMessage))
+{
+    <div class="alert alert-info">@infoMessage</div>
+}
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<div class="row mb-3">
+    <div class="col-md-3">
+        <label for="month" class="form-label">Month</label>
+        <select id="month" class="form-select" @bind="montharg">
+            @foreach (var m in Enumerable.Range(1, 12))
+            {
+                <option value="@m">@(new DateTime(2025, m, 1).ToString("MMMM"))</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <label for="year" class="form-label">Year</label>
+        <input id="year"
+               type="number"
+               class="form-control"
+               @bind="yeararg" />
+    </div>
+
+    <div class="col-md-3 align-self-end">
+        <button class="btn btn-primary" @onclick="SearchAsync">
+            Search
+        </button>
+    </div>
+</div>
 
 @if (shipments != null && shipments.Count > 0)
 {
@@ -58,22 +94,59 @@ you will need to add a using statement-->
     private int itemsPerPage = 5;
     private int totalItems = 0; // total number of rows for the query
 
-    protected override async Task OnInitializedAsync()
+    // feedback messages
+    private string? infoMessage;
+    private string? errorMessage;
+
+    private async Task SearchAsync()
     {
+        // when user clicks Search, start at page 1 and recalc total count
+        await LoadShipmentsAsync(true,true);
+    }
+
+
+    private async Task LoadShipmentsAsync(bool resetPageNumber, bool recalcTotal)
+    {
+        // clear previous messages for each load
+        infoMessage = string.Empty;
+        errorMessage = string.Empty;
+
+        if (resetPageNumber)
+        {
+            currentPageNumber = 1;
+        }
+
         try
         {
-            totalItems = await _shipmentServices.CountShipmentsByYearAndMonth(yeararg, montharg);
+            if (recalcTotal)
+            {
+                totalItems = await _shipmentServices
+                    .CountShipmentsByYearAndMonth(yeararg, montharg);
+            }
+
             shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
-                yeararg, montharg, currentPageNumber, itemsPerPage);
+                yeararg,
+                montharg,
+                currentPageNumber,
+                itemsPerPage);
+
+            if (totalItems == 0)
+            {
+                infoMessage = "No shipments found for the selected month and year.";
+            }
         }
-        catch(ArgumentOutOfRangeException ex)
+        catch (ArgumentOutOfRangeException ex)
         {
-            Console.WriteLine($"Dtga value error: {ex.Message}");
+            errorMessage = $"Data Value Error: {ex.Message}";
+            shipments = new List<Shipment>();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            Console.WriteLine($"System error: {ex.Message}");
+            errorMessage = $"System Error: {ex.Message}";
+            shipments = new List<Shipment>();
         }
+
+        StateHasChanged();
     }
 
     private int GetTotalPages()
