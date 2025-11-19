@@ -37,7 +37,7 @@ namespace WestWindSystem.BLL
                 .ToListAsync();
         }
 
-        public async Task<int> GetShipmentCountByYearAndMonth(int year, int month)
+        public async Task<int> CountShipmentsByYearAndMonth(int year, int month)
         {
             if (month < 1 || month > 12)
             {

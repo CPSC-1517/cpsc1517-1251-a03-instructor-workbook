@@ -1,7 +1,61 @@
 ﻿@page "/shipments/query"
+<!--
+
+Additional package setup
+
+you will need to add the NuGet package Blazor.BootStrap (do first)
+you will need to add a using statement-->
+@using BlazorBootstrap;
+
+@using WestWindSystem.BLL;
+@using WestWindSystem.Entities;
 
 <h3>ShipmentQuery</h3>
 
 @code {
+    private int yeararg = 2017;
+    private int montharg = 11;
+    private List<Shipment>? shipments = null;
 
+    [Inject]
+    public ShipmentServices _shipmentServices { get; set; }
+
+    // pagination variables
+    private int currentPageNumber = 0;  // the current page to display
+    private int itemsPerPage = 5;
+    private int totalItems = 0; // total number of rows for the query
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            totalItems = await _shipmentServices.CountShipmentsByYearAndMonth(yeararg, montharg);
+            shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
+                yeararg, montharg, currentPageNumber, itemsPerPage);
+        }
+        catch(ArgumentOutOfRangeException ex)
+        {
+            Console.WriteLine($"Dtga value error: {ex.Message}");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine($"System error: {ex.Message}");
+        }
+    }
+
+    private int GetTotalPages()
+    {
+        return (totalItems + itemsPerPage - 1) / itemsPerPage;
+    }
+
+    private async Task PageChanged(int newPageNumber)
+    {
+        currentPageNumber = newPageNumber;
+        shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
+            yeararg,
+            montharg,
+            currentPageNumber,
+            itemsPerPage
+        );
+    }
 }
