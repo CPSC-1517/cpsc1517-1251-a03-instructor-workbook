@@ -12,6 +12,39 @@ you will need to add a using statement-->
 
 <h3>ShipmentQuery</h3>
 
+@if (shipments != null && shipments.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>OrderID</th>
+                <th>Date</th>
+                <th>Shipper</th>
+                <th>Freight($)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var currentShipment in shipments)
+            {
+                <tr>
+                   <td>@currentShipment.ShipmentID</td>
+                   <td>@currentShipment.OrderID</td>
+                   <td>@currentShipment.ShippedDate.ToString("MMM dd, yyyy")</td>
+                   <td>@currentShipment.ShipViaNavigation.CompanyName</td>
+                    <td align="right">@(string.Format("{0:#,##0.00}", currentShipment.FreightCharge))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <Pagination ActivePageNumber="currentPageNumber"
+            TotalPages="GetTotalPages()"
+            PageChanged="OnPageChanged">
+   </Pagination>
+}
+
+
 @code {
     private int yeararg = 2017;
     private int montharg = 11;
@@ -21,7 +54,7 @@ you will need to add a using statement-->
     public ShipmentServices _shipmentServices { get; set; }
 
     // pagination variables
-    private int currentPageNumber = 0;  // the current page to display
+    private int currentPageNumber = 1;  // the current page to display
     private int itemsPerPage = 5;
     private int totalItems = 0; // total number of rows for the query
 
@@ -48,7 +81,7 @@ you will need to add a using statement-->
         return (totalItems + itemsPerPage - 1) / itemsPerPage;
     }
 
-    private async Task PageChanged(int newPageNumber)
+    private async Task OnPageChanged(int newPageNumber)
     {
         currentPageNumber = newPageNumber;
         shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
