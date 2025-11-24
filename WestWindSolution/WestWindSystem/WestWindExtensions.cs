@@ -42,6 +42,18 @@ public static class WestWindExtensions
             return new ShipmentServices(dbContext);
         });
 
+        services.AddTransient<ShipperServices>(sp =>
+        {
+            var dbContext = sp.GetRequiredService<IDbContextFactory<WestWindContext>>();
+            return new ShipperServices(dbContext);
+        });
+
+        services.AddTransient<OrderServices>(sp =>
+        {
+            var dbContext = sp.GetRequiredService<IDbContextFactory<WestWindContext>>();
+            return new OrderServices(dbContext);
+        });
+
         return services;
     }
 }

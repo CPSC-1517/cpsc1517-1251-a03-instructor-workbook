@@ -1,0 +1,99 @@
+﻿@page "/shipments/crud"
+@using WestWindSystem.BLL
+@using WestWindSystem.Entities
+@inject ShipmentServices CurrentShipmentService
+@inject OrderServices CurrentOrderService
+@inject ShipperServices CurrentShipperService
+
+<PageTitle>Manage Shipments</PageTitle>
+
+<h3>Manage Shipments</h3>
+
+@if (!string.IsNullOrEmpty(feedback))
+{
+    <div class="alert alert-info mt-3">
+        @feedback
+    </div>
+}
+
+<EditForm Model="currentShipment" OnValidSubmit="SaveAsync">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label" for="OrderID">OrderID</label>
+        <InputSelect id="OrderID" class="form-select" @bind-Value="currentShipment.OrderID">
+            <option value="0">-- select a order --</option>
+            @foreach (var currentOrder in orders)
+            {
+                <option value="@currentOrder.OrderID">@currentOrder.CustomerID - @currentOrder.RequiredDate?.ToString("yyyy-MM-dd")</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => currentShipment.OrderID)" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Shipped Date</label>
+        <InputDate class="form-control"
+                     @bind-Value="currentShipment.ShippedDate" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="ShipVia">ShipperID</label>
+        <InputSelect id="ShipVia" class="form-select" @bind-Value="currentShipment.ShipVia">
+            <option value="0">-- select a shipper --</option>
+            @foreach(var currentShipper in shippers)
+            {
+                <option value="@currentShipper.ShipperID">@currentShipper.CompanyName</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => currentShipment.ShipVia)" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Freight Charge</label>
+        <InputNumber class="form-control"
+                     @bind-Value="currentShipment.FreightCharge" />
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2">Save</button>
+
+</EditForm>
+
+@code {
+    private Shipment currentShipment = new();
+    private string feedback = string.Empty;
+
+    private List<Order> orders = new();
+    private List<Shipper> shippers = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await CurrentOrderService.FindLast100UnshippedOrders();
+        shippers = await CurrentShipperService.GetAllShippers();
+        currentShipment.ShippedDate = DateTime.Today;
+    }
+
+    private async Task SaveAsync()
+    {
+        try 
+        {
+            await CurrentShipmentService.AddShipmentAsync(currentShipment);
+            feedback = $"Shipment created successfully with ID {currentShipment.ShipmentID}";
+            currentShipment = new();
+        }
+        catch(Exception ex)
+        {
+            feedback = $"You caused this error: {GetInnerException(ex).Message}";
+        }
+    }
+
+    private Exception GetInnerException(Exception ex)
+    {
+        while (ex.InnerException != null)
+        {
+            ex = ex.InnerException;
+        }
+        return ex;
+    }
+}

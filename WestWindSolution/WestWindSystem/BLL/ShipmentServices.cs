@@ -22,7 +22,7 @@ namespace WestWindSystem.BLL
         {
             if (month < 1 || month > 12)
             {
-                throw new ArgumentOutOfRangeException(nameof(month),$"Invalid month {month}. Month must be between 1 and 12.");
+                throw new ArgumentOutOfRangeException(nameof(month), $"Invalid month {month}. Month must be between 1 and 12.");
             }
             if (year < 1990 || year > DateTime.Today.Year)
             {
@@ -56,9 +56,9 @@ namespace WestWindSystem.BLL
 
 
         public async Task<List<Shipment>> FindShipmentsByYearAndMonthPaging(
-            int year, 
+            int year,
             int month,
-            int currentPageNumber, 
+            int currentPageNumber,
             int itemsPerPage)
         {
             if (month < 1 || month > 12)
@@ -83,5 +83,40 @@ namespace WestWindSystem.BLL
                 .ToListAsync();
         }
 
+        public async Task<Shipment> AddShipmentAsync(Shipment newShipment)
+        {
+            await using var context = await _dbContextFactory.CreateDbContextAsync();
+
+            context.Shipments.Add(newShipment);
+            await context.SaveChangesAsync();
+
+            // After SaveChanges, EF Core will set the new ShipmentID
+            return newShipment;
+
+        }
+
+        public async Task UpdateShipmentAsync(Shipment updatedShipment)
+        {
+            await using var context = await _dbContextFactory.CreateDbContextAsync();
+
+            context.Shipments.Update(updatedShipment);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteShipmentAsync(int shipmentId)
+        {
+            await using var context = await _dbContextFactory.CreateDbContextAsync();
+
+            var existing = await context.Shipments.FindAsync(shipmentId);
+            if (existing == null)
+            {
+                throw new ArgumentException($"Shipment {shipmentId} does not exist.");
+            }
+
+            context.Shipments.Remove(existing);
+            await context.SaveChangesAsync();
+        }
+
     }
+
 }
