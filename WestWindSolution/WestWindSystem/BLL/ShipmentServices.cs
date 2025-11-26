@@ -95,6 +95,16 @@ namespace WestWindSystem.BLL
 
         }
 
+        public async Task<Shipment?> FindShipmentByShipmentId(int shipmentId)
+        {
+            await using var context = await _dbContextFactory.CreateDbContextAsync();
+            //return await context.Shipments
+            //    .Where(s => s.ShipmentID == shipmentId)
+            //    .FirstOrDefaultAsync();
+            return await context.Shipments
+                .FirstOrDefaultAsync(s => s.ShipmentID == shipmentId);
+        }
+
         public async Task UpdateShipmentAsync(Shipment updatedShipment)
         {
             await using var context = await _dbContextFactory.CreateDbContextAsync();

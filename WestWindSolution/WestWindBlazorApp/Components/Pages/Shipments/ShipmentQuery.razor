@@ -58,6 +58,7 @@ you will need to add a using statement-->
                 <th>Date</th>
                 <th>Shipper</th>
                 <th>Freight($)</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +69,11 @@ you will need to add a using statement-->
                    <td>@currentShipment.OrderID</td>
                    <td>@currentShipment.ShippedDate.ToString("MMM dd, yyyy")</td>
                    <td>@currentShipment.ShipViaNavigation.CompanyName</td>
-                    <td align="right">@(string.Format("{0:#,##0.00}", currentShipment.FreightCharge))</td>
+                   <td align="right">@(string.Format("{0:#,##0.00}", currentShipment.FreightCharge))</td>
+                   <td>
+                        <a class="btn btn-sm btn-outline-secondary"
+                            href="/shipments/crud/@currentShipment.ShipmentID">Edit</a>
+                   </td>
                 </tr>
             }
         </tbody>

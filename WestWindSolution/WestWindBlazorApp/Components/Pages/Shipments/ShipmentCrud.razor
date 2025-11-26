@@ -1,4 +1,4 @@
-﻿@page "/shipments/crud"
+﻿@page "/shipments/crud/{ShipmentId:int?}"
 @using WestWindSystem.BLL
 @using WestWindSystem.Entities
 @inject ShipmentServices CurrentShipmentService
@@ -56,11 +56,18 @@
                      @bind-Value="currentShipment.FreightCharge" />
     </div>
 
-    <button type="submit" class="btn btn-primary me-2">Save</button>
+    <button type="submit" class="btn btn-primary me-2">
+        @(_editMode ? "Save Changes" : "Create")
+    </button>
 
 </EditForm>
 
 @code {
+    [Parameter]
+    public int? ShipmentId { get; set; }
+
+    private bool _editMode => ShipmentId.HasValue && ShipmentId.Value > 0;
+
     private Shipment currentShipment = new();
     private string feedback = string.Empty;
 
@@ -69,18 +76,55 @@
 
     protected override async Task OnInitializedAsync()
     {
-        orders = await CurrentOrderService.FindLast100UnshippedOrders();
-        shippers = await CurrentShipperService.GetAllShippers();
-        currentShipment.ShippedDate = DateTime.Today;
+        try 
+        {
+            orders = await CurrentOrderService.FindLast100UnshippedOrders();
+            shippers = await CurrentShipperService.GetAllShippers();
+            if (_editMode)
+            {
+                var existingShipment = await CurrentShipmentService.FindShipmentByShipmentId(ShipmentId!.Value);
+                if (existingShipment is null)
+                { 
+                    feedback = $"Shipment {ShipmentId.Value} was not found.";
+                }
+                else
+                {
+                    currentShipment = existingShipment;
+                }
+            } 
+            else
+            {
+                //currentShipment.ShippedDate = DateTime.Today;
+                currentShipment = new Shipment
+                    {
+                        ShippedDate = DateTime.Today
+                    };
+
+            }
+
+        }
+        catch(Exception ex)
+        {
+
+        }
     }
 
     private async Task SaveAsync()
     {
         try 
         {
-            await CurrentShipmentService.AddShipmentAsync(currentShipment);
-            feedback = $"Shipment created successfully with ID {currentShipment.ShipmentID}";
-            currentShipment = new();
+            if (_editMode)
+            {
+                await CurrentShipmentService.UpdateShipmentAsync(currentShipment);
+                feedback = $"Shipment updated successfully.";
+            }
+            else
+            {
+                await CurrentShipmentService.AddShipmentAsync(currentShipment);
+                feedback = $"Shipment created successfully with ID {currentShipment.ShipmentID}";
+                currentShipment = new();
+            }
+           
         }
         catch(Exception ex)
         {
