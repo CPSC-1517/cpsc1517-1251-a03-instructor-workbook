@@ -87,6 +87,17 @@ namespace WestWindSystem.BLL
         {
             await using var context = await _dbContextFactory.CreateDbContextAsync();
 
+
+            // Validate ShippedDate is present or in the future
+            if (newShipment.ShippedDate <  DateTime.Today)
+            {
+                throw new ArgumentException("Shipped date must be present or in the future.");
+            }
+
+            // Validate OrderID exists
+
+            // Generate a random unique string for the TrackingCode
+            newShipment.TrackingCode = Guid.NewGuid().ToString();
             context.Shipments.Add(newShipment);
             await context.SaveChangesAsync();
 
