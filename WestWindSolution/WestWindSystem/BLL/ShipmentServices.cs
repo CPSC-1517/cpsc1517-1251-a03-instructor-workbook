@@ -91,10 +91,23 @@ namespace WestWindSystem.BLL
             // Validate ShippedDate is present or in the future
             if (newShipment.ShippedDate <  DateTime.Today)
             {
-                throw new ArgumentException("Shipped date must be present or in the future.");
+                throw new ArgumentException("Shipped date must be present or in the future.", 
+                                            nameof(newShipment.ShippedDate));
             }
 
-            // Validate OrderID exists
+            // Validate OrderID (FK) exists
+            if (!context.Orders.Any(o => o.OrderID == newShipment.OrderID) )
+            {
+                throw new ArgumentException($"Shipment OrderID {newShipment.OrderID} does not exist.", 
+                                            nameof(newShipment.OrderID));
+            }
+
+            // Validate ShipperID (FK) exists
+            if (!context.Shippers.Any(o => o.ShipperID == newShipment.ShipmentID))
+            {
+                throw new ArgumentException($"Shipment ShipperID {newShipment.ShipmentID} does not exist.", 
+                                            nameof(newShipment.ShipmentID));
+            }
 
             // Generate a random unique string for the TrackingCode
             newShipment.TrackingCode = Guid.NewGuid().ToString();
