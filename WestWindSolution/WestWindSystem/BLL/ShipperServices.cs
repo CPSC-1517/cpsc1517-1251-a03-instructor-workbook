@@ -23,6 +23,7 @@ namespace WestWindSystem.BLL
             await using var context = await _dbContextFactory.CreateDbContextAsync();
             return await context.Shippers
                         .OrderBy(s => s.CompanyName)
+                        .AsNoTracking()
                         .ToListAsync();
         }
     }

@@ -26,6 +26,7 @@ namespace WestWindSystem.BLL
                         .OrderByDescending(o => o.OrderDate)
                         .ThenByDescending(o => o.RequiredDate)
                         .Take(100)
+                        .AsNoTracking()
                         .ToListAsync();
 
         }

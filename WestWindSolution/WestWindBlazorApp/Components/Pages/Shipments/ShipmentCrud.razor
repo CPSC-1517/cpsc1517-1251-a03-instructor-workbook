@@ -81,6 +81,9 @@
 </EditForm>
 
 @code {
+    private EditContext editContext;
+    private ValidationMessageStore messageStore;
+
     [Parameter]
     public int? ShipmentId { get; set; }
 
@@ -94,6 +97,9 @@
 
     protected override async Task OnInitializedAsync()
     {
+        editContext = new EditContext(currentShipment);
+        messageStore = new ValidationMessageStore(editContext);
+
         try 
         {
             orders = await CurrentOrderService.FindLast100UnshippedOrders();
@@ -123,7 +129,7 @@
         }
         catch(Exception ex)
         {
-
+            
         }
     }
 
@@ -166,7 +172,7 @@
             }
             catch(Exception ex)
             {
-                
+               
             }
 
         }

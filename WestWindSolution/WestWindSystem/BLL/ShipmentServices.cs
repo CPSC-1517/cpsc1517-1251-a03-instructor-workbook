@@ -34,6 +34,7 @@ namespace WestWindSystem.BLL
                 .Include(s => s.ShipViaNavigation)
                 .Where(s => s.ShippedDate.Year == year && s.ShippedDate.Month == month)
                 .OrderBy(s => s.ShippedDate)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
@@ -80,6 +81,7 @@ namespace WestWindSystem.BLL
                 .OrderBy(s => s.ShippedDate)
                 .Skip(recordsSkipped)
                 .Take(itemsPerPage)
+                .AsNoTracking()
                 .ToListAsync();
         }
 
@@ -111,7 +113,7 @@ namespace WestWindSystem.BLL
 
             // Generate a random unique string for the TrackingCode
             newShipment.TrackingCode = Guid.NewGuid().ToString();
-            context.Shipments.Add(newShipment);
+            await context.Shipments.AddAsync(newShipment);
             await context.SaveChangesAsync();
 
             // After SaveChanges, EF Core will set the new ShipmentID

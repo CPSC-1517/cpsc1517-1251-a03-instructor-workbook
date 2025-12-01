@@ -9,24 +9,22 @@ using WestWindSystem.Entities;
 
 namespace WestWindSystem.BLL
 {
-    public class CategoryServices
+    public class SupplierServices
     {
         private readonly IDbContextFactory<WestWindContext> _dbContextFactory;
 
-        internal CategoryServices(IDbContextFactory<WestWindContext> dbContextFactory)
+        internal SupplierServices(IDbContextFactory<WestWindContext> dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<List<Category>> Category_GetAllAsync()
+        public async Task<List<Supplier>> GetAllSuppliers()
         {
             await using var context = await _dbContextFactory.CreateDbContextAsync();
-            return await context
-                            .Categories
-                            .OrderBy(c => c.CategoryName)
-                            .AsNoTracking()
-                            .ToListAsync();
+            return await context.Suppliers
+                .OrderBy(s => s.CompanyName)
+                .AsNoTracking()
+                .ToListAsync();
         }
-
     }
 }
