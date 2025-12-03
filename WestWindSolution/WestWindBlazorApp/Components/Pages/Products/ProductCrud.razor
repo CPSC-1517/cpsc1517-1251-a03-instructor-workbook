@@ -21,15 +21,18 @@
     <ValidationSummary />
 
     <div class="mb-3">
-        <label class="form-label" for="OrderID">Product Name</label>
-        <InputText class="form-control"
-                     @bind-Value="currentProduct.ProductName" />
+        <label class="form-label" for="ProductName">Product Name</label>
+        <InputText  id="ProductName" 
+                    class="form-control"
+                    @bind-Value="currentProduct.ProductName" />
         <ValidationMessage For="@(() => currentProduct.ProductName)" />
     </div>
 
     <div class="mb-3">
-        <label class="form-label" for="categoryID">Category</label>
-        <InputSelect class="form-select" @bind-Value="currentProduct.CategoryID">
+        <label class="form-label" for="CategoryID">Category</label>
+        <InputSelect id="CategoryID" 
+                     class="form-select" 
+                     @bind-Value="currentProduct.CategoryID">
             <option value="0">-- select a category --</option>
             @foreach (var currentCategory in categories)
             {
@@ -41,7 +44,9 @@
 
     <div class="mb-3">
         <label class="form-label" for="SupplierID">Supplier</label>
-        <InputSelect  class="form-select" @bind-Value="currentProduct.SupplierID">
+        <InputSelect id="SupplierID"
+                     class="form-select" 
+                     @bind-Value="currentProduct.SupplierID">
             <option value="0">-- select a supplier --</option>
             @foreach (var currentSupplier in suppliers)
             {
@@ -51,33 +56,40 @@
         <ValidationMessage For="@(() => currentProduct.SupplierID)" />
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="QuantityPerUnit">Quantity / Unit</label>
-        <InputText class="form-control"
-                   @bind-Value="currentProduct.QuantityPerUnit" />
-        <ValidationMessage For="@(() => currentProduct.QuantityPerUnit)" />
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label class="form-label" for="QuantityPerUnit">Quantity / Unit</label>
+            <InputText class="form-control"
+                       id="QuantityPerUnit"
+                       @bind-Value="currentProduct.QuantityPerUnit" />
+            <ValidationMessage For="@(() => currentProduct.QuantityPerUnit)" />
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label class="form-label" for="MinimumOrderQuantity">Minimum Order Quantity</label>
+            <InputNumber class="form-control"
+                         id="MinimumOrderQuantity"
+                         @bind-Value="currentProduct.MinimumOrderQuantity" />
+            <ValidationMessage For="@(() => currentProduct.MinimumOrderQuantity)" />
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label class="form-label" for="UnitPrice">Unit Price</label>
+            <InputNumber class="form-control"
+                         id="UnitPrice"
+                         @bind-Value="currentProduct.UnitPrice" />
+            <ValidationMessage For="@(() => currentProduct.UnitPrice)" />
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label class="form-label" for="UnitsOnOrder">Units On Order</label>
+            <InputNumber class="form-control"
+                         id="UnitsOnOrder"
+                         @bind-Value="currentProduct.UnitsOnOrder" />
+            <ValidationMessage For="@(() => currentProduct.UnitsOnOrder)" />
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="MinimumOrderQuantity">Minimum Order Quantity</label>
-        <InputNumber class="form-control"
-                   @bind-Value="currentProduct.MinimumOrderQuantity" />
-        <ValidationMessage For="@(() => currentProduct.MinimumOrderQuantity)" />
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" for="UnitPrice">Unit Price</label>
-        <InputNumber class="form-control"
-                     @bind-Value="currentProduct.UnitPrice" />
-        <ValidationMessage For="@(() => currentProduct.UnitPrice)" />
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label" for="UnitsOnOrder">Units On Order</label>
-        <InputNumber class="form-control"
-                     @bind-Value="currentProduct.UnitsOnOrder" />
-        <ValidationMessage For="@(() => currentProduct.UnitsOnOrder)" />
-    </div>
 
     <button type="submit" class="btn btn-primary me-2">
         @(editMode ? "Save Changes" : "Create")

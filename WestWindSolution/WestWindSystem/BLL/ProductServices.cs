@@ -107,6 +107,7 @@ namespace WestWindSystem.BLL
             }
 
             //context.Products.Update(updatedProduct);
+            // Attach the Product and mark all scalar properties as Modified
             context.Entry(updatedProduct).State = EntityState.Modified;
             return await context.SaveChangesAsync();
 
