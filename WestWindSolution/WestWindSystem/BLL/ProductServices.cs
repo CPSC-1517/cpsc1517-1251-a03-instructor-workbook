@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using WestWindSystem.DAL;
@@ -16,6 +17,16 @@ namespace WestWindSystem.BLL
         internal ProductServices(IDbContextFactory<WestWindContext> dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
+        }
+
+        public async Task<Product?> GetProductByProductIdAsync(int productID)
+        {
+            await using var context = await _dbContextFactory.CreateDbContextAsync();
+            return await context.Products
+                            .Include(p => p.Category)
+                            .Include(p => p.Supplier)
+                            .AsNoTracking()
+                            .FirstOrDefaultAsync(p => p.ProductID == productID);
         }
 
         public async Task<List<Product>> Product_GetByCategoryIDAsync(int categoryID)

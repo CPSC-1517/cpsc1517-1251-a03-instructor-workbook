@@ -18,7 +18,7 @@ namespace WestWindSystem.BLL
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<List<Supplier>> GetAllSuppliers()
+        public async Task<List<Supplier>> GetAllSuppliersAsync()
         {
             await using var context = await _dbContextFactory.CreateDbContextAsync();
             return await context.Suppliers

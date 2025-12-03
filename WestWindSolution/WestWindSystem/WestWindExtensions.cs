@@ -54,6 +54,12 @@ public static class WestWindExtensions
             return new OrderServices(dbContext);
         });
 
+        services.AddTransient<SupplierServices>(sp =>
+        {
+            var dbContext = sp.GetRequiredService<IDbContextFactory<WestWindContext>>();
+            return new SupplierServices(dbContext);
+        });
+
         return services;
     }
 }

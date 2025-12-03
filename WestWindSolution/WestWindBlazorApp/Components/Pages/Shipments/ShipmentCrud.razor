@@ -24,13 +24,8 @@
 
     <div class="mb-3">
         <label class="form-label" for="OrderID">OrderID</label>
-        <InputSelect id="OrderID" class="form-select" @bind-Value="currentShipment.OrderID">
-            <option value="0">-- select a order --</option>
-            @foreach (var currentOrder in orders)
-            {
-                <option value="@currentOrder.OrderID">@currentOrder.CustomerID - @currentOrder.RequiredDate?.ToString("yyyy-MM-dd")</option>
-            }
-        </InputSelect>
+        <InputNumber class="form-control"
+                     @bind-Value="currentShipment.OrderID" />
         <ValidationMessage For="@(() => currentShipment.OrderID)" />
     </div>
 
@@ -81,9 +76,6 @@
 </EditForm>
 
 @code {
-    private EditContext editContext;
-    private ValidationMessageStore messageStore;
-
     [Parameter]
     public int? ShipmentId { get; set; }
 
@@ -92,17 +84,12 @@
     private Shipment currentShipment = new();
     private string feedback = string.Empty;
 
-    private List<Order> orders = new();
     private List<Shipper> shippers = new();
 
     protected override async Task OnInitializedAsync()
     {
-        editContext = new EditContext(currentShipment);
-        messageStore = new ValidationMessageStore(editContext);
-
         try 
         {
-            orders = await CurrentOrderService.FindLast100UnshippedOrders();
             shippers = await CurrentShipperService.GetAllShippers();
             if (_editMode)
             {
@@ -129,7 +116,7 @@
         }
         catch(Exception ex)
         {
-            
+            feedback = $"Error initializing: {GetInnerException(ex).Message}";
         }
     }
 
@@ -152,7 +139,7 @@
         }
         catch(Exception ex)
         {
-            feedback = $"You caused this error: {GetInnerException(ex).Message}";
+            feedback = $"Error saving: {GetInnerException(ex).Message}";
         }
     }
 
@@ -172,7 +159,7 @@
             }
             catch(Exception ex)
             {
-               
+                feedback = $"Error deleting: {GetInnerException(ex).Message}";
             }
 
         }

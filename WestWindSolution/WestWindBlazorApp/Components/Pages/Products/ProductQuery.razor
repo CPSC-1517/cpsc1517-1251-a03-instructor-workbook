@@ -1,4 +1,4 @@
-﻿@page "/westwind/products"
+﻿@page "/products"
 @using WestWindSystem.BLL
 @using WestWindSystem.Entities
 @inject CategoryServices CurrentCategoryServices
@@ -32,6 +32,7 @@
                 <th>Product Name</th>
                 <th>Unit Price</th>
                 <th>Supplier Company</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +43,10 @@
                     <td>@currentProduct.ProductName</td>
                     <td>@currentProduct.UnitPrice</td>
                     <td>@currentProduct.Supplier.CompanyName</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-secondary"
+                           href="/products/crud/@currentProduct.ProductID">Edit</a>
+                    </td>
                 </tr>   
             }
         </tbody>
