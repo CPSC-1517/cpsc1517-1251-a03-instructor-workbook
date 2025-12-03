@@ -4,7 +4,8 @@
 Additional package setup
 
 you will need to add the NuGet package Blazor.BootStrap (do first)
-you will need to add a using statement-->
+you will need to add a using statement
+-->
 @using BlazorBootstrap;
 
 @using WestWindSystem.BLL;
@@ -12,20 +13,20 @@ you will need to add a using statement-->
 
 <h3>Shipment Query</h3>
 
-@if (!string.IsNullOrWhiteSpace(infoMessage))
+@if (!string.IsNullOrWhiteSpace(_infoMessage))
 {
-    <div class="alert alert-info">@infoMessage</div>
+    <div class="alert alert-info">@_infoMessage</div>
 }
 
-@if (!string.IsNullOrWhiteSpace(errorMessage))
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
 {
-    <div class="alert alert-danger">@errorMessage</div>
+    <div class="alert alert-danger">@_errorMessage</div>
 }
 
 <div class="row mb-3">
     <div class="col-md-3">
         <label for="month" class="form-label">Month</label>
-        <select id="month" class="form-select" @bind="montharg">
+        <select id="month" class="form-select" @bind="_monthArg">
             @foreach (var m in Enumerable.Range(1, 12))
             {
                 <option value="@m">@(new DateTime(2025, m, 1).ToString("MMMM"))</option>
@@ -38,7 +39,7 @@ you will need to add a using statement-->
         <input id="year"
                type="number"
                class="form-control"
-               @bind="yeararg" />
+               @bind="_yearArg" />
     </div>
 
     <div class="col-md-3 align-self-end">
@@ -48,7 +49,7 @@ you will need to add a using statement-->
     </div>
 </div>
 
-@if (shipments != null && shipments.Count > 0)
+@if (_shipments != null && _shipments.Count > 0)
 {
     <table class="table table-striped">
         <thead>
@@ -62,93 +63,97 @@ you will need to add a using statement-->
             </tr>
         </thead>
         <tbody>
-            @foreach(var currentShipment in shipments)
+            @foreach (var currentShipment in _shipments)
             {
                 <tr>
-                   <td>@currentShipment.ShipmentID</td>
-                   <td>@currentShipment.OrderID</td>
-                   <td>@currentShipment.ShippedDate.ToString("MMM dd, yyyy")</td>
-                   <td>@currentShipment.ShipViaNavigation.CompanyName</td>
-                   <td align="right">@(string.Format("{0:#,##0.00}", currentShipment.FreightCharge))</td>
-                   <td>
+                    <td>@currentShipment.ShipmentID</td>
+                    <td>@currentShipment.OrderID</td>
+                    <td>@currentShipment.ShippedDate.ToString("MMM dd, yyyy")</td>
+                    <td>@currentShipment.ShipViaNavigation.CompanyName</td>
+                    <td align="right">
+                        @(string.Format("{0:#,##0.00}", currentShipment.FreightCharge))
+                    </td>
+                    <td>
                         <a class="btn btn-sm btn-outline-secondary"
-                            href="/shipments/crud/@currentShipment.ShipmentID">Edit</a>
-                   </td>
+                           href="/shipments/crud/@currentShipment.ShipmentID">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <Pagination ActivePageNumber="currentPageNumber"
-            TotalPages="GetTotalPages()"
-            PageChanged="OnPageChanged">
-   </Pagination>
+    <Pagination ActivePageNumber="_currentPageNumber"
+                TotalPages="GetTotalPages()"
+                PageChanged="OnPageChanged">
+    </Pagination>
 }
 
-
 @code {
-    private int yeararg = 2017;
-    private int montharg = 11;
-    private List<Shipment>? shipments = null;
+    // query args
+    private int _yearArg = 2017;
+    private int _monthArg = 11;
 
+    // data
+    private List<Shipment>? _shipments;
+
+    // injected service (property, no underscore)
     [Inject]
-    public ShipmentServices _shipmentServices { get; set; }
+    public ShipmentServices ShipmentServices { get; set; } = default!;
 
     // pagination variables
-    private int currentPageNumber = 1;  // the current page to display
-    private int itemsPerPage = 5;
-    private int totalItems = 0; // total number of rows for the query
+    private int _currentPageNumber = 1;  // the current page to display
+    private int _itemsPerPage = 5;
+    private int _totalItems = 0; // total number of rows for the query
 
     // feedback messages
-    private string? infoMessage;
-    private string? errorMessage;
+    private string? _infoMessage;
+    private string? _errorMessage;
 
     private async Task SearchAsync()
     {
         // when user clicks Search, start at page 1 and recalc total count
-        await LoadShipmentsAsync(true,true);
+        await LoadShipmentsAsync(resetPageNumber: true, recalcTotal: true);
     }
-
 
     private async Task LoadShipmentsAsync(bool resetPageNumber, bool recalcTotal)
     {
         // clear previous messages for each load
-        infoMessage = string.Empty;
-        errorMessage = string.Empty;
+        _infoMessage = string.Empty;
+        _errorMessage = string.Empty;
 
         if (resetPageNumber)
         {
-            currentPageNumber = 1;
+            _currentPageNumber = 1;
         }
 
         try
         {
             if (recalcTotal)
             {
-                totalItems = await _shipmentServices
-                    .CountShipmentsByYearAndMonth(yeararg, montharg);
+                _totalItems = await ShipmentServices
+                    .CountShipmentsByYearAndMonth(_yearArg, _monthArg);
             }
 
-            shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
-                yeararg,
-                montharg,
-                currentPageNumber,
-                itemsPerPage);
+            _shipments = await ShipmentServices.FindShipmentsByYearAndMonthPaging(
+                _yearArg,
+                _monthArg,
+                _currentPageNumber,
+                _itemsPerPage);
 
-            if (totalItems == 0)
+            if (_totalItems == 0)
             {
-                infoMessage = "No shipments found for the selected month and year.";
+                _infoMessage = "No shipments found for the selected month and year.";
             }
         }
         catch (ArgumentOutOfRangeException ex)
         {
-            errorMessage = $"Data Value Error: {ex.Message}";
-            shipments = new List<Shipment>();
+            _errorMessage = $"Data Value Error: {ex.Message}";
+            _shipments = new List<Shipment>();
         }
         catch (Exception ex)
         {
-            errorMessage = $"System Error: {ex.Message}";
-            shipments = new List<Shipment>();
+            _errorMessage = $"System Error: {ex.Message}";
+            _shipments = new List<Shipment>();
         }
 
         StateHasChanged();
@@ -156,17 +161,17 @@ you will need to add a using statement-->
 
     private int GetTotalPages()
     {
-        return (totalItems + itemsPerPage - 1) / itemsPerPage;
+        return (_totalItems + _itemsPerPage - 1) / _itemsPerPage;
     }
 
     private async Task OnPageChanged(int newPageNumber)
     {
-        currentPageNumber = newPageNumber;
-        shipments = await _shipmentServices.FindShipmentsByYearAndMonthPaging(
-            yeararg,
-            montharg,
-            currentPageNumber,
-            itemsPerPage
-        );
+        _currentPageNumber = newPageNumber;
+
+        _shipments = await ShipmentServices.FindShipmentsByYearAndMonthPaging(
+            _yearArg,
+            _monthArg,
+            _currentPageNumber,
+            _itemsPerPage);
     }
 }

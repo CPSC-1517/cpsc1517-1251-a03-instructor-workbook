@@ -1,7 +1,7 @@
 ﻿@page "/products/crud/{ProductID:int?}"
 @using WestWindSystem.BLL
 @using WestWindSystem.Entities
-@inject ProductServices CurrentProductService
+@inject ProductServices _currentProductService
 @inject CategoryServices CurrentCategoryService
 @inject SupplierServices CurrentSupplierService
 @inject IJSRuntime CurrentJSRuntime
@@ -9,14 +9,14 @@
 
 <h3>Manage Products</h3>
 
-@if (!string.IsNullOrEmpty(feedback))
+@if (!string.IsNullOrEmpty(_feedback))
 {
     <div class="alert alert-info mt-3">
-        @feedback
+        @_feedback
     </div>
 }
 
-<EditForm EditContext="editContext" OnValidSubmit="SaveAsync">
+<EditForm EditContext="_editContext" OnValidSubmit="SaveAsync">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -24,36 +24,36 @@
         <label class="form-label" for="ProductName">Product Name</label>
         <InputText  id="ProductName" 
                     class="form-control"
-                    @bind-Value="currentProduct.ProductName" />
-        <ValidationMessage For="@(() => currentProduct.ProductName)" />
+                    @bind-Value="_currentProduct.ProductName" />
+        <ValidationMessage For="@(() => _currentProduct.ProductName)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label" for="CategoryID">Category</label>
         <InputSelect id="CategoryID" 
                      class="form-select" 
-                     @bind-Value="currentProduct.CategoryID">
+                     @bind-Value="_currentProduct.CategoryID">
             <option value="0">-- select a category --</option>
-            @foreach (var currentCategory in categories)
+            @foreach (var currentCategory in _categories)
             {
                 <option value="@currentCategory.CategoryID">@currentCategory.CategoryName</option>
             }
         </InputSelect>
-        <ValidationMessage For="@(() => currentProduct.CategoryID)" />
+        <ValidationMessage For="@(() => _currentProduct.CategoryID)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label" for="SupplierID">Supplier</label>
         <InputSelect id="SupplierID"
                      class="form-select" 
-                     @bind-Value="currentProduct.SupplierID">
+                     @bind-Value="_currentProduct.SupplierID">
             <option value="0">-- select a supplier --</option>
-            @foreach (var currentSupplier in suppliers)
+            @foreach (var currentSupplier in _suppliers)
             {
                 <option value="@currentSupplier.SupplierID">@currentSupplier.CompanyName</option>
             }
         </InputSelect>
-        <ValidationMessage For="@(() => currentProduct.SupplierID)" />
+        <ValidationMessage For="@(() => _currentProduct.SupplierID)" />
     </div>
 
     <div class="row">
@@ -61,41 +61,41 @@
             <label class="form-label" for="QuantityPerUnit">Quantity / Unit</label>
             <InputText class="form-control"
                        id="QuantityPerUnit"
-                       @bind-Value="currentProduct.QuantityPerUnit" />
-            <ValidationMessage For="@(() => currentProduct.QuantityPerUnit)" />
+                       @bind-Value="_currentProduct.QuantityPerUnit" />
+            <ValidationMessage For="@(() => _currentProduct.QuantityPerUnit)" />
         </div>
 
         <div class="col-md-3 mb-3">
             <label class="form-label" for="MinimumOrderQuantity">Minimum Order Quantity</label>
             <InputNumber class="form-control"
                          id="MinimumOrderQuantity"
-                         @bind-Value="currentProduct.MinimumOrderQuantity" />
-            <ValidationMessage For="@(() => currentProduct.MinimumOrderQuantity)" />
+                         @bind-Value="_currentProduct.MinimumOrderQuantity" />
+            <ValidationMessage For="@(() => _currentProduct.MinimumOrderQuantity)" />
         </div>
 
         <div class="col-md-3 mb-3">
             <label class="form-label" for="UnitPrice">Unit Price</label>
             <InputNumber class="form-control"
                          id="UnitPrice"
-                         @bind-Value="currentProduct.UnitPrice" />
-            <ValidationMessage For="@(() => currentProduct.UnitPrice)" />
+                         @bind-Value="_currentProduct.UnitPrice" />
+            <ValidationMessage For="@(() => _currentProduct.UnitPrice)" />
         </div>
 
         <div class="col-md-3 mb-3">
             <label class="form-label" for="UnitsOnOrder">Units On Order</label>
             <InputNumber class="form-control"
                          id="UnitsOnOrder"
-                         @bind-Value="currentProduct.UnitsOnOrder" />
-            <ValidationMessage For="@(() => currentProduct.UnitsOnOrder)" />
+                         @bind-Value="_currentProduct.UnitsOnOrder" />
+            <ValidationMessage For="@(() => _currentProduct.UnitsOnOrder)" />
         </div>
     </div>
 
 
     <button type="submit" class="btn btn-primary me-2">
-        @(editMode ? "Save Changes" : "Create")
+        @(EditMode ? "Save Changes" : "Create")
     </button>
 
-    @if (editMode)
+    @if (EditMode)
     {
         <button type="button"
                 class="btn btn-danger me-2"
@@ -115,48 +115,48 @@
     [Parameter]
     public int? ProductID { get; set; }
 
-    private EditContext editContext;
-    private ValidationMessageStore messageStore;
+    private EditContext _editContext;
+    private ValidationMessageStore _messageStore;
 
-    private Product currentProduct = new();
-    private bool editMode => ProductID.HasValue && ProductID.Value > 0;
+    private Product _currentProduct = new();
+    private bool EditMode => ProductID.HasValue && ProductID.Value > 0;
 
-    private string feedback = "";
+    private string _feedback = "";
 
-    private List<Category> categories = new();
-    private List<Supplier> suppliers = new();
+    private List<Category> _categories = new();
+    private List<Supplier> _suppliers = new();
 
     protected override async Task OnInitializedAsync()
     {
-        editContext = new(currentProduct);
-        messageStore = new(editContext);
+        _editContext = new(_currentProduct);
+        _messageStore = new(_editContext);
 
         try
         {
             // Fetch list of Categories and Suppliers
-            categories = await CurrentCategoryService.Category_GetAllAsync();
-            suppliers = await CurrentSupplierService.GetAllSuppliersAsync();
+            _categories = await CurrentCategoryService.Category_GetAllAsync();
+            _suppliers = await CurrentSupplierService.GetAllSuppliersAsync();
             // Check if we need to fetch Product to edit
-            if (editMode)
+            if (EditMode)
             {
-                var existingProduct = await CurrentProductService.GetProductByProductIdAsync(ProductID!.Value);
+                var existingProduct = await _currentProductService.GetProductByProductIdAsync(ProductID!.Value);
                 if (existingProduct is null)
                 {
-                    messageStore.Add(editContext.Field(nameof(ProductID)),$"ProductID {ProductID.Value} not found.");
+                    _messageStore.Add(_editContext.Field(nameof(ProductID)),$"ProductID {ProductID.Value} not found.");
                 }
                 else
                 {
-                    currentProduct = existingProduct;
-                    editContext = new(currentProduct);
-                    messageStore = new(editContext);
+                    _currentProduct = existingProduct;
+                    _editContext = new(_currentProduct);
+                    _messageStore = new(_editContext);
                 }
             }
         }
         catch(Exception ex)
         {
-            var modelError = new FieldIdentifier(editContext.Model, "");
-            messageStore.Add(modelError, $"An unexpected error occurred during initialization: {GetInnerException(ex).Message}");
-            editContext.NotifyValidationStateChanged();
+            var modelError = new FieldIdentifier(_editContext.Model, "");
+            _messageStore.Add(modelError, $"An unexpected error occurred during initialization: {GetInnerException(ex).Message}");
+            _editContext.NotifyValidationStateChanged();
         }
     }
 
@@ -164,24 +164,24 @@
     {
         try
         {
-            if (editMode)
+            if (EditMode)
             {
-                await CurrentProductService.UpdateProductAsync(currentProduct);
-                feedback = $"Product updated successfully.";
+                await _currentProductService.UpdateProductAsync(_currentProduct);
+                _feedback = $"Product updated successfully.";
             }
             else
             {
-                await CurrentProductService.AddProductAsync(currentProduct);
-                feedback = $"Product created successfully with ID {currentProduct.ProductID}";
-                currentProduct = new();
+                await _currentProductService.AddProductAsync(_currentProduct);
+                _feedback = $"Product created successfully with ID {_currentProduct.ProductID}";
+                _currentProduct = new();
             }
 
         }
         catch (Exception ex)
         {
-            var modelError = new FieldIdentifier(editContext.Model, "");
-            messageStore.Add(modelError, $"An unexpected error occurred while saving: {GetInnerException(ex).Message}");
-            editContext.NotifyValidationStateChanged();
+            var modelError = new FieldIdentifier(_editContext.Model, "");
+            _messageStore.Add(modelError, $"An unexpected error occurred while saving: {GetInnerException(ex).Message}");
+            _editContext.NotifyValidationStateChanged();
         }
     }
 
@@ -193,17 +193,17 @@
         {
             try
             {
-                if (editMode)
+                if (EditMode)
                 {
-                    await CurrentProductService.DeleteProductAsync(ProductID!.Value);
+                    await _currentProductService.DeleteProductAsync(ProductID!.Value);
                 }
-                CurrentNavigationManager.NavigateTo("/products/query");
+                CurrentNavigationManager.NavigateTo("/products");
             }
             catch (Exception ex)
             {
-                var modelError = new FieldIdentifier(editContext.Model, "");
-                messageStore.Add(modelError, $"An unexpected error occurred while deleting: {GetInnerException(ex).Message}");
-                editContext.NotifyValidationStateChanged();
+                var modelError = new FieldIdentifier(_editContext.Model, "");
+                _messageStore.Add(modelError, $"An unexpected error occurred while deleting: {GetInnerException(ex).Message}");
+                _editContext.NotifyValidationStateChanged();
             }
 
         }
@@ -214,7 +214,7 @@
             "confirm", "Are you sure you want to cancel editing this item and navigate back to query page?");
         if (confirmed)
         {
-            CurrentNavigationManager.NavigateTo("/products/query");
+            CurrentNavigationManager.NavigateTo("/products");
         }
     }
 

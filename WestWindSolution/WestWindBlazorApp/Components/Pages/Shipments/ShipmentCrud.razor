@@ -11,53 +11,53 @@
 
 <h3>Manage Shipments</h3>
 
-@if (!string.IsNullOrEmpty(feedback))
+@if (!string.IsNullOrEmpty(_feedback))
 {
     <div class="alert alert-info mt-3">
-        @feedback
+        @_feedback
     </div>
 }
 
-<EditForm Model="currentShipment" OnValidSubmit="SaveAsync">
+<EditForm Model="_currentShipment" OnValidSubmit="SaveAsync">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="mb-3">
         <label class="form-label" for="OrderID">OrderID</label>
         <InputNumber class="form-control"
-                     @bind-Value="currentShipment.OrderID" />
-        <ValidationMessage For="@(() => currentShipment.OrderID)" />
+                     @bind-Value="_currentShipment.OrderID" />
+        <ValidationMessage For="@(() => _currentShipment.OrderID)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label">Shipped Date</label>
         <InputDate class="form-control"
-                     @bind-Value="currentShipment.ShippedDate" />
+                     @bind-Value="_currentShipment.ShippedDate" />
     </div>
 
     <div class="mb-3">
         <label class="form-label" for="ShipVia">ShipperID</label>
-        <InputSelect id="ShipVia" class="form-select" @bind-Value="currentShipment.ShipVia">
+        <InputSelect id="ShipVia" class="form-select" @bind-Value="_currentShipment.ShipVia">
             <option value="0">-- select a shipper --</option>
-            @foreach(var currentShipper in shippers)
+            @foreach(var currentShipper in _shippers)
             {
                 <option value="@currentShipper.ShipperID">@currentShipper.CompanyName</option>
             }
         </InputSelect>
-        <ValidationMessage For="@(() => currentShipment.ShipVia)" />
+        <ValidationMessage For="@(() => _currentShipment.ShipVia)" />
     </div>
 
     <div class="mb-3">
         <label class="form-label">Freight Charge</label>
         <InputNumber class="form-control"
-                     @bind-Value="currentShipment.FreightCharge" />
+                     @bind-Value="_currentShipment.FreightCharge" />
     </div>
 
     <button type="submit" class="btn btn-primary me-2">
-        @(_editMode ? "Save Changes" : "Create")
+        @(EditMode ? "Save Changes" : "Create")
     </button>
 
-    @if (_editMode)
+    @if (EditMode)
     {
         <button type="button" 
             class="btn btn-danger me-2" 
@@ -79,34 +79,34 @@
     [Parameter]
     public int? ShipmentId { get; set; }
 
-    private bool _editMode => ShipmentId.HasValue && ShipmentId.Value > 0;
+    private bool EditMode => ShipmentId.HasValue && ShipmentId.Value > 0;
 
-    private Shipment currentShipment = new();
-    private string feedback = string.Empty;
+    private Shipment _currentShipment = new();
+    private string _feedback = string.Empty;
 
-    private List<Shipper> shippers = new();
+    private List<Shipper> _shippers = new();
 
     protected override async Task OnInitializedAsync()
     {
         try 
         {
-            shippers = await CurrentShipperService.GetAllShippers();
-            if (_editMode)
+            _shippers = await CurrentShipperService.GetAllShippers();
+            if (EditMode)
             {
                 var existingShipment = await CurrentShipmentService.FindShipmentByShipmentId(ShipmentId!.Value);
                 if (existingShipment is null)
                 { 
-                    feedback = $"Shipment {ShipmentId.Value} was not found.";
+                    _feedback = $"Shipment {ShipmentId.Value} was not found.";
                 }
                 else
                 {
-                    currentShipment = existingShipment;
+                    _currentShipment = existingShipment;
                 }
             } 
             else
             {
-                //currentShipment.ShippedDate = DateTime.Today;
-                currentShipment = new Shipment
+                //_currentShipment.ShippedDate = DateTime.Today;
+                _currentShipment = new Shipment
                     {
                         ShippedDate = DateTime.Today
                     };
@@ -116,7 +116,7 @@
         }
         catch(Exception ex)
         {
-            feedback = $"Error initializing: {GetInnerException(ex).Message}";
+            _feedback = $"Error initializing: {GetInnerException(ex).Message}";
         }
     }
 
@@ -124,22 +124,22 @@
     {
         try 
         {
-            if (_editMode)
+            if (EditMode)
             {
-                await CurrentShipmentService.UpdateShipmentAsync(currentShipment);
-                feedback = $"Shipment updated successfully.";
+                await CurrentShipmentService.UpdateShipmentAsync(_currentShipment);
+                _feedback = $"Shipment updated successfully.";
             }
             else
             {
-                await CurrentShipmentService.AddShipmentAsync(currentShipment);
-                feedback = $"Shipment created successfully with ID {currentShipment.ShipmentID}";
-                currentShipment = new();
+                await CurrentShipmentService.AddShipmentAsync(_currentShipment);
+                _feedback = $"Shipment created successfully with ID {_currentShipment.ShipmentID}";
+                _currentShipment = new();
             }
 
         }
         catch(Exception ex)
         {
-            feedback = $"Error saving: {GetInnerException(ex).Message}";
+            _feedback = $"Error saving: {GetInnerException(ex).Message}";
         }
     }
 
@@ -151,7 +151,7 @@
         {
             try
             {
-                if (_editMode)
+                if (EditMode)
                 {
                     await CurrentShipmentService.DeleteShipmentAsync(ShipmentId!.Value);
                 }
@@ -159,7 +159,7 @@
             }
             catch(Exception ex)
             {
-                feedback = $"Error deleting: {GetInnerException(ex).Message}";
+                _feedback = $"Error deleting: {GetInnerException(ex).Message}";
             }
 
         }

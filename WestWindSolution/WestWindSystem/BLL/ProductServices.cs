@@ -35,7 +35,7 @@ namespace WestWindSystem.BLL
             await using var context = await _dbContextFactory.CreateDbContextAsync();
             return await context.Products
                     .Include(x => x.Supplier)
-                    .Where(x => x.CategoryID == categoryID)
+                    .Where(x => x.CategoryID == categoryID && !x.Discontinued)
                     .OrderBy(x => x.ProductName)
                     .ToListAsync();
         }
