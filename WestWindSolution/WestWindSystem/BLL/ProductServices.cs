@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +106,8 @@ namespace WestWindSystem.BLL
                 throw new ArgumentException($"ProductID {updatedProduct.ProductID} does not exists.");
             }
 
-            context.Products.Update(updatedProduct);
+            //context.Products.Update(updatedProduct);
+            context.Entry(updatedProduct).State = EntityState.Modified;
             return await context.SaveChangesAsync();
 
         }
