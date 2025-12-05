@@ -128,8 +128,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _editContext = new(_currentProduct);
-        _messageStore = new(_editContext);
+        _editContext = new EditContext(_currentProduct);
+        _messageStore = new ValidationMessageStore(_editContext);
 
         try
         {
@@ -171,9 +171,29 @@
             }
             else
             {
-                await _currentProductService.AddProductAsync(_currentProduct);
-                _feedback = $"Product created successfully with ID {_currentProduct.ProductID}";
-                _currentProduct = new();
+                // Sample validation demo
+                // Product Name cannot contains the text XXX
+                if (_currentProduct.ProductName.ToLower().Contains("xxx"))
+                {
+                    _messageStore.Add(_editContext.Field(nameof(_currentProduct.ProductName)), "Product Name are not allowed to contains XXX");
+                }
+                // Unit Price must be $2.00 or more
+                if (_currentProduct.UnitPrice < 2)
+                {
+                    _messageStore.Add(_editContext.Field(nameof(_currentProduct.UnitPrice)), "Unit Price must be >= $2.00");
+
+                }
+                // Add any additional validation requirements
+
+                // Check if there any validation errors
+                if (!_editContext.GetValidationMessages().Any())
+                {
+                    await _currentProductService.AddProductAsync(_currentProduct);
+                    _feedback = $"Product created successfully with ID {_currentProduct.ProductID}";
+                    _currentProduct = new();
+                }
+
+             
             }
 
         }
