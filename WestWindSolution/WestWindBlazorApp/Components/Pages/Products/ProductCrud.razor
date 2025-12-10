@@ -126,10 +126,58 @@
     private List<Category> _categories = new();
     private List<Supplier> _suppliers = new();
 
+    private void ConfigureEditContext()
+    {
+        _editContext = new EditContext(_currentProduct);
+        _messageStore = new ValidationMessageStore(_editContext);
+
+        _editContext.OnValidationRequested += (sender, eventArgs) =>
+        {
+            _messageStore.Clear();
+
+            // Sample validation demo
+            // Product Name cannot contains the text XXX
+            if (!string.IsNullOrWhiteSpace(_currentProduct.ProductName)
+                && _currentProduct.ProductName.ToLower().Contains("xxx"))
+            {
+                _messageStore.Add(
+                    _editContext.Field(nameof(_currentProduct.ProductName)),
+                    "Product Name is not allowed to contain XXX");
+            }
+            // Unit Price must be $2.00 or more
+            if (_currentProduct.UnitPrice < 2)
+            {
+                _messageStore.Add(
+                    _editContext.Field(nameof(_currentProduct.UnitPrice)),
+                    "Unit Price must be >= $2.00");
+            }
+
+            // any additional validation...
+        };
+    }
+
+
     protected override async Task OnInitializedAsync()
     {
         _editContext = new EditContext(_currentProduct);
         _messageStore = new ValidationMessageStore(_editContext);
+
+        _editContext.OnValidationRequested += (sender, eventArgs) =>
+        {
+            // Sample validation demo
+            // Product Name cannot contains the text XXX
+            if (!string.IsNullOrWhiteSpace(_currentProduct.ProductName) && _currentProduct.ProductName.ToLower().Contains("xxx"))
+            {
+                _messageStore.Add(_editContext.Field(nameof(_currentProduct.ProductName)), "Product Name are not allowed to contains XXX");
+            }
+            // Unit Price must be $2.00 or more
+            if (_currentProduct.UnitPrice < 2)
+            {
+                _messageStore.Add(_editContext.Field(nameof(_currentProduct.UnitPrice)), "Unit Price must be >= $2.00");
+
+            }
+            // Add any additional validation requirements
+        };
 
         try
         {
@@ -142,18 +190,21 @@
                 var existingProduct = await _currentProductService.GetProductByProductIdAsync(ProductID!.Value);
                 if (existingProduct is null)
                 {
+                    ConfigureEditContext();
                     _messageStore.Add(_editContext.Field(nameof(ProductID)),$"ProductID {ProductID.Value} not found.");
+                    _editContext.NotifyValidationStateChanged();
                 }
                 else
                 {
                     _currentProduct = existingProduct;
-                    _editContext = new(_currentProduct);
-                    _messageStore = new(_editContext);
                 }
             }
+
+            ConfigureEditContext();
         }
         catch(Exception ex)
         {
+            ConfigureEditContext();
             var modelError = new FieldIdentifier(_editContext.Model, "");
             _messageStore.Add(modelError, $"An unexpected error occurred during initialization: {GetInnerException(ex).Message}");
             _editContext.NotifyValidationStateChanged();
@@ -167,43 +218,28 @@
             if (EditMode)
             {
                 await _currentProductService.UpdateProductAsync(_currentProduct);
-                _feedback = $"Product updated successfully.";
+                _feedback = "Product updated successfully.";
             }
             else
             {
-                // Sample validation demo
-                // Product Name cannot contains the text XXX
-                if (_currentProduct.ProductName.ToLower().Contains("xxx"))
-                {
-                    _messageStore.Add(_editContext.Field(nameof(_currentProduct.ProductName)), "Product Name are not allowed to contains XXX");
-                }
-                // Unit Price must be $2.00 or more
-                if (_currentProduct.UnitPrice < 2)
-                {
-                    _messageStore.Add(_editContext.Field(nameof(_currentProduct.UnitPrice)), "Unit Price must be >= $2.00");
+                await _currentProductService.AddProductAsync(_currentProduct);
+                _feedback = $"Product created successfully with ID {_currentProduct.ProductID}";
 
-                }
-                // Add any additional validation requirements
-
-                // Check if there any validation errors
-                if (!_editContext.GetValidationMessages().Any())
-                {
-                    await _currentProductService.AddProductAsync(_currentProduct);
-                    _feedback = $"Product created successfully with ID {_currentProduct.ProductID}";
-                    _currentProduct = new();
-                }
-
-             
+                // reset to a fresh product for the next create
+                _currentProduct = new Product();
+                ConfigureEditContext(); // recreates EditContext + ValidationMessageStore + OnValidationRequested
             }
-
         }
         catch (Exception ex)
         {
+            // model-level error from BLL / unexpected exceptions
             var modelError = new FieldIdentifier(_editContext.Model, "");
-            _messageStore.Add(modelError, $"An unexpected error occurred while saving: {GetInnerException(ex).Message}");
+            _messageStore.Add(modelError,
+                $"An unexpected error occurred while saving: {GetInnerException(ex).Message}");
             _editContext.NotifyValidationStateChanged();
         }
     }
+
 
     private async Task DeleteProductAsync()
     {
